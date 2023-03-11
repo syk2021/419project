@@ -1,1 +1,3 @@
 backend/.env
+backend/node_modules
+testproject/node_modules
