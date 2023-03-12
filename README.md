@@ -1,7 +1,7 @@
-# 419 project
+# 419 Final Project
 
-Frontend directory: frontend (React Native)
-Backend directory: backend (MongoDB (database), Express.js (for api routing), Node.js)
+- Frontend directory: frontend (React Native)
+- Backend directory: backend (MongoDB (database), Express.js (for api routing), Node.js)
 
 ## Commands to run in terminal
 - run backend server => node index.js
