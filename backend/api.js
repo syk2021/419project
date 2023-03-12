@@ -47,7 +47,8 @@ router.post('/login', async (req, res) => {
     console.log("login gets here");
 
     // find the user with the entered username and password
-    const found_user = await UserModel.findOne({ username: req.body.username, password: req.body.username}).exec();
+    const found_user = await UserModel.findOne({ username: req.body.username, password: req.body.password}).exec();
+    console.log(found_user);
     // username or password does not match
     if (!found_user) {
         console.log("username or password does not match!");
@@ -55,7 +56,7 @@ router.post('/login', async (req, res) => {
     }
     
     // else, found user with right username + pw => create session for user
-    var token = jwt.sign({ username: found_user.username}, process.env.JWT_SECRET, {
+    var token = jwt.sign({ username: found_user.username}, "secret", {
         expiresIn: 86400 // 24 hours
     });
 

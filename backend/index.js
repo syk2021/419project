@@ -15,7 +15,7 @@ app.use(jsonParser);
 app.use(
     cookieSession({
         name: "project-session",
-        secret: process.env.JWT_SECRET,
+        secret: "eac29fd554401d7d6e82f22caf6e5fddb00e85719b0999d25520b7c14fffc73bf8b9aac43ea8f2cd6f599e696c187657b5dcdf28dbaf45c71d8d90c2719a827f",
         httpOnly: true
     })
 );

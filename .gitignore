@@ -1,3 +1,15 @@
 backend/.env
 backend/node_modules
-testproject/node_modules
+frontend/node_modules
+frontend/__tests__
+frontend/Gemfile
+frontend/Gemfile.lock
+frontend/.watchmanconfig
+frontend/.ruby-version
+frontend/.prettierrc.js
+frontend/.node-version
+frontend/.App.js.swp
+frontend/.eslintrc.js
+frontend/vendor
+frontend/tsconfig.json
+frontend/yarn.lock

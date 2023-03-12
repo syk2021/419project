@@ -1,6 +1,6 @@
 # 419 project
 
-Frontend directory: testproject (React Native)
+Frontend directory: frontend (React Native)
 Backend directory: backend (MongoDB (database), Express.js (for api routing), Node.js)
 
 ## Commands to run in terminal
@@ -15,5 +15,10 @@ For instance, this project will require you to have a package called `react-rout
 To install this package, call `npm install react-router-native` in the terminal.
 
 ## How to add a page to the app
-- Make a .js file in `testproject` directory.
-- Navigate to 'App.js' in `testproject` directory and inside the tags `NativeRouter` and `Routes`, add a Route with the relevant path you want to direct the app to (this will be called inside navigate in the frontend pages themselves) and import the component from the file. Inside the `Route` tag, include element=`NameofElement`.
+- add a Stack.Screen tag to frontend's App.js. the component has to match your component and name can be anything that you want it to be (as long as no overlaps in App.js and MainContainer.js)
+- then pass in ({navigation}) into where your component sits.
+- call navigation.navigate("Name") to redirect to the page that you named "Name" in frontend's App.js.
+
+## Progress, MVP Version
+- Backend: registration and login using mongoose models, api using axios requests
+- Frontend: registration and login forms, main page (home + details + settings tab), navigation using React Navigation
