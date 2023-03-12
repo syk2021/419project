@@ -4,9 +4,9 @@ Frontend directory: frontend (React Native)
 Backend directory: backend (MongoDB (database), Express.js (for api routing), Node.js)
 
 ## Commands to run in terminal
-run backend server => node index.js
-npx react-native start => will print out errors in the frontend side
-npx react-native run-ios => runs the react-native app itself
+- run backend server => node index.js
+- npx react-native start => will print out errors in the frontend side
+- npx react-native run-ios => runs the react-native app itself
 
 # Adding a package
 Like Python's pip, node has a package manager called `npm`. 
