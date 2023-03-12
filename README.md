@@ -11,8 +11,8 @@
 # Adding a package
 Like Python's pip, node has a package manager called `npm`. 
 Just like you do `pip install (package_name)`, call `npm install (package_name)`
-For instance, this project will require you to have a package called `react-router-native`. 
-To install this package, call `npm install react-router-native` in the terminal.
+For instance, this project will require you to have a package called `react-navigation-native`. 
+To install this package, call `npm install react-navigation-native` in the terminal.
 
 ## How to add a page to the app
 - add a Stack.Screen tag to frontend's App.js. the component has to match your component and name can be anything that you want it to be (as long as no overlaps in App.js and MainContainer.js)
@@ -21,4 +21,4 @@ To install this package, call `npm install react-router-native` in the terminal.
 
 ## Progress, MVP Version
 - Backend: registration and login using mongoose models, api using axios requests
-- Frontend: registration and login forms, main page (home + details + settings tab), navigation using React Navigation
+- Frontend: registration and login forms at entry point of app, main page (with home + details + settings tab), navigation using React Navigation
