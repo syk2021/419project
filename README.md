@@ -4,7 +4,7 @@
 - Backend directory: backend (MongoDB (database), Express.js (for api routing), Node.js)
 
 ## Commands to run in terminal
-- run backend server => node index.js
+- run backend server => node index.js (make sure to be in backend directory)
 - npx react-native start => will print out errors in the frontend side
 - npx react-native run-ios => runs the react-native app itself
 
