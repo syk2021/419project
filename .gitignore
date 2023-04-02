@@ -13,3 +13,6 @@ frontend/.eslintrc.js
 frontend/vendor
 frontend/tsconfig.json
 frontend/yarn.lock
+frontend/android
+frontend/.bundle
+frontend/ios

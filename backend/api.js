@@ -52,15 +52,8 @@ router.post('/login', async (req, res) => {
     // username or password does not match
     if (!found_user) {
         console.log("username or password does not match!");
-        return res.status(400).json(found_user);
+        return res.status(500).json(found_user);
     }
-    
-    // else, found user with right username + pw => create session for user
-    var token = jwt.sign({ username: found_user.username}, "secret", {
-        expiresIn: 86400 // 24 hours
-    });
-
-    req.session.token = token;
     
     console.log(found_user);
 
