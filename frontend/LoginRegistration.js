@@ -9,7 +9,6 @@ const LoginRegistration = ({navigation}) => {
   const { user, setUser } = useContext(UserContext);
   let [username, setUsername] = useState("");
   let [password, setPassword] = useState("");
-  let [registerErrorMessage, setRegisterErrorMessage] = useState("");
   let [loginErrorMessage, setLoginErrorMessage] = useState("");
 
   navigateToRegistration = () => {

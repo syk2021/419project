@@ -1,5 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { Button, StyleSheet, Text, TextInput, View } from 'react-native';
+import axios from 'axios';
 
 const Registration = ({navigation}) => {
     let [firstName, setFirstName] = useState("");
@@ -18,6 +19,10 @@ const Registration = ({navigation}) => {
         params = {
           username: username,
           password: password,
+          firstName: firstName,
+          lastName: lastName,
+          phoneNumber: phoneNumber,
+          affiliation: affiliation,
         };
         console.log("request is sent!")
         console.log(username)
@@ -50,7 +55,7 @@ const Registration = ({navigation}) => {
         <TextInput style={styles.input} value={lastName} placeholder="Last Name" autoCapitalize="none" onChangeText={(text)=>setLastName(text)}/>
         <TextInput style={styles.input} value={username} placeholder="username" autoCapitalize="none" onChangeText={(text)=>setUsername(text)}/>
         <TextInput style={styles.input} value={password} placeholder="password" secureTextEntry autoCapitalize="none" onChangeText={(text)=>setPassword(text)}/>
-        <TextInput style={styles.input} value={phoneNumber} placeholder="Phone Number" onChangeText={(text)=>setPhoneNumber(text)}/>
+        <TextInput style={styles.input} value={phoneNumber} placeholder="Phone Number: OOO-OOO-OOO" onChangeText={(text)=>setPhoneNumber(text)}/>
         <Button title="Undergraduate" onPress={()=>setAffiliation("Undergraduate")}/>
         <Button title="Graduate" onPress={() => setAffiliation("Graduate")}/>
         <Button title={"Sign Up"} onPress={() => doUserRegistration(username, password)}/>

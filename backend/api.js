@@ -35,7 +35,11 @@ router.post('/register', async (req, res) => {
     // create user in mongoose model by passing in username, password
     const user = await UserModel.create({
         username: req.body.username,
-        password: req.body.password
+        password: req.body.password,
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
+        phoneNumber: req.body.phoneNumber,
+        affiliation: req.body.affiliation
     });
     
     return res.status(200).json(user);

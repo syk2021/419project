@@ -7,6 +7,20 @@ var UserSchema = new Schema({
     },
     password: {
         type: String
+    },
+    firstName: {
+        type: String
+    },
+    lastName: {
+        type: String
+    },
+    // undergrad + grad
+    affiliation: {
+        type: String
+    },
+    // phone number: string with dashes
+    phoneNumber: {
+        type: String
     }
 })
 
