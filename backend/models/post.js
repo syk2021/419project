@@ -8,9 +8,9 @@ const PostSchema = new Schema({
         default: Date.now,
     },
     user: {
-        _id: mongoose.Types.ObjectId,
         username: String,
     },
+    rentRange: Number,
 });
 
 const Post = mongoose.model('Post', PostSchema);

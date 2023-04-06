@@ -15,4 +15,3 @@ frontend/tsconfig.json
 frontend/yarn.lock
 frontend/android
 frontend/.bundle
-frontend/ios
