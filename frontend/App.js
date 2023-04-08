@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import 'react-native-gesture-handler';
-import LoginRegistration from "./LoginRegistration.js";
+import Login from "./Login.js";
 import MainContainer from "./MainContainer.js";
 import Registration from "./Registration.js";
 import { NavigationContainer} from '@react-navigation/native';
@@ -13,8 +13,8 @@ const YourApp = () => {
   return (
     <UserProvider>
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="RegistrationLogin">
-        <Stack.Screen name="RegistrationLogin" component={LoginRegistration}/>
+      <Stack.Navigator initialRouteName="Login">
+        <Stack.Screen name="Login" component={Login}/>
         <Stack.Screen name="Registration" component={Registration}/>
         <Stack.Screen name="MainPage" component={MainContainer}/>
       </Stack.Navigator>
