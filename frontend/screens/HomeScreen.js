@@ -5,24 +5,33 @@ export default function HomeScreen({ navigation }) {
   const [posts, setPosts] = useState([
     {
       id: 1,
-      title: 'Post 1',
+      title: 'NH: Post 1',
       content: 'This is the first post.',
       author: 'User A',
       rent: '$1000',
+      date: 'Dec',
+      endDate: 'Jan',
+      gender: 'F',
     },
     {
       id: 2,
-      title: 'Post 2',
+      title: 'LA: Post 2',
       content: 'This is the second post.',
       author: 'User B',
       rent: '$1000',
+      date: 'Jan',
+      endDate: 'Jan',
+      gender: 'M',
     },
     {
       id: 3,
-      title: 'Post 3',
+      title: 'MA: Post 3',
       content: 'This is the third post.',
       author: 'User A',
       rent: '$1000',
+      date: 'Feb',
+      endDate: 'Jan',
+      gender: 'F',
     },
   ]);
   const [search, setSearch] = useState('');
@@ -40,7 +49,7 @@ export default function HomeScreen({ navigation }) {
         </View>
         <View style={styles.postDetails}>
           <Text style={styles.postTitle}>{item.title}</Text>
-          <Text style={styles.postContent}>{item.content}</Text>
+          <Text style={styles.postContent}>{item.date} - {item.endDate}</Text>
           <Text style={styles.postAuthor}>Posted by: {item.author}</Text>
         </View>
       </TouchableOpacity>
@@ -56,7 +65,7 @@ export default function HomeScreen({ navigation }) {
     <View style={styles.container}>
       <Text style={styles.title}>Posts</Text>
       <TextInput
-        placeholder="Search by title"
+        placeholder="Search by title/ location"
         style={styles.searchInput}
         onChangeText={(text) => setSearch(text)}
         value={search}
@@ -84,7 +93,7 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingHorizontal: 20,
     paddingVertical: 40,
-    backgroundColor: '#F2EEE4',
+    backgroundColor: '#f0f0f0',
   },
   title: {
     fontSize: 24,
@@ -97,7 +106,7 @@ const styles = StyleSheet.create({
     height: 40,
     borderWidth: 1,
     borderRadius: 5,
-    borderColor: '#ccc',
+    borderColor: '#0F4D92',
     paddingHorizontal: 10,
     marginBottom: 10,
   },
