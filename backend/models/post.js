@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
-const PostSchema = new Schema({
+var PostSchema = new Schema({
     title: String,
     content: String,
     publishedDate: {
@@ -13,5 +13,5 @@ const PostSchema = new Schema({
     rentRange: Number,
 });
 
-const PostModel = mongoose.model('Post', PostSchema);
+var PostModel = mongoose.model('Post', PostSchema);
 module.exports = PostModel;
