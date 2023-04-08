@@ -6,11 +6,13 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 // Screens
 import HomeScreen from './screens/HomeScreen';
 import DetailsScreen from './screens/DetailsScreen';
+import PostScreen from './screens/PostScreen';
 import SettingsScreen from './screens/SettingsScreen';
 
 //Screen names
 const homeName = "Home";
 const detailsName = "Details";
+const postName = "Post";
 const settingsName = "Settings";
 
 const Tab = createBottomTabNavigator();
@@ -30,6 +32,9 @@ function MainContainer() {
             } else if (rn === detailsName) {
               iconName = focused ? 'list' : 'list-outline';
 
+            } else if (rn === postName) {
+              iconName = focused ? 'post' : 'post-outline';
+
             } else if (rn === settingsName) {
               iconName = focused ? 'settings' : 'settings-outline';
             }
@@ -47,6 +52,7 @@ function MainContainer() {
 
         <Tab.Screen name={homeName} component={HomeScreen} />
         <Tab.Screen name={detailsName} component={DetailsScreen} />
+        <Tab.Screen name={postName} component={PostScreen} />
         <Tab.Screen name={settingsName} component={SettingsScreen} />
 
       </Tab.Navigator>
