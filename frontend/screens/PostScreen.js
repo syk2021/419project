@@ -35,7 +35,7 @@ export default function PostScreen({ navigation }) {
   }
 
   return (
-    <View style={{ flex: 1, paddingHorizontal: 20, paddingVertical: 40 }}>
+    <View style={{ flex: 1, paddingHorizontal: 20, paddingVertical: 40, backgroundColor: '#f0f0f0' }}>
       <Text style={{ fontSize: 24, fontWeight: 'bold', marginBottom: 20 }}>
         Create a New Post
       </Text>
@@ -44,7 +44,7 @@ export default function PostScreen({ navigation }) {
         placeholder="Enter a title"
         value={title}
         onChangeText={setTitle}
-        style={{ marginBottom: 20, fontSize: 16, padding: 10, backgroundColor: '#f5f5f5' }}
+        style={{ marginBottom: 20, fontSize: 16, padding: 10, backgroundColor: 'white', borderStyle: 'solid', borderWidth: 1, borderColor: '#c5c5c5' }}
       />
 
       <TextInput
@@ -52,19 +52,20 @@ export default function PostScreen({ navigation }) {
         value={content}
         onChangeText={setContent}
         multiline={true}
-        style={{ height: 200, fontSize: 16, padding: 10, backgroundColor: '#f5f5f5', textAlignVertical: 'top' }}
+        style={{ height: 200, fontSize: 16, padding: 10, backgroundColor: 'white', borderStyle: 'solid', borderWidth: 1, borderColor: '#c5c5c5', textAlignVertical: 'top' }}
       />
 
       <TextInput
-      placeholder="Rent Range"
-      value={rentRange}
-      onChangeText={setRentRange}
-      style={{ height: 200, fontSize: 16, padding: 10, backgroundColor: '#f5f5f5', textAlignVertical: 'top' }}
+        placeholder="Rent Range"
+        value={rentRange}
+        onChangeText={setRentRange}
+        style={{ marginBottom: 20, fontSize: 16, padding: 10, backgroundColor: 'white', borderStyle: 'solid', borderWidth: 1, borderColor: '#c5c5c5' }}
       />
 
-      <TouchableOpacity onPress={handlePost} style={{ backgroundColor: 'blue', paddingVertical: 10, paddingHorizontal: 20, borderRadius: 5 }}>
+      <TouchableOpacity onPress={handlePost} style={{ backgroundColor: '#0c2340', paddingVertical: 10, paddingHorizontal: 20, borderRadius: 5 }}>
         <Text style={{ color: 'white', fontSize: 18 }}>Post</Text>
       </TouchableOpacity>
     </View>
   );
 }
+
