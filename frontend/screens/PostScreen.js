@@ -1,14 +1,37 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { View, Text, TextInput, TouchableOpacity } from 'react-native';
+import axios from 'axios';
+import { UserContext } from '../UserProvider.js';
 
 export default function PostScreen({ navigation }) {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
+  const { user } = useContext(UserContext);
+  const [rentRange, setRentRange] = useState('')
 
   const handlePost = () => {
     // Handle posting logic
     console.log(`Title: ${title}, Content: ${content}`);
-    navigation.navigate('Home');
+    
+    params = {
+      title: title,
+      content: content,
+      username: user,
+      rentRange: rentRange
+    };
+
+    axios.post('http://localhost:4000/api/newpost', params)
+    .then((response) => {
+      console.log("new post success!");
+      console.log(response.data.title);
+      console.log(response.data.content);
+      console.log(response.data.username);
+
+      navigation.navigate('Home');
+    })
+    .catch((error) => {
+      console.log(error);
+    })
   }
 
   return (
@@ -30,6 +53,13 @@ export default function PostScreen({ navigation }) {
         onChangeText={setContent}
         multiline={true}
         style={{ height: 200, fontSize: 16, padding: 10, backgroundColor: '#f5f5f5', textAlignVertical: 'top' }}
+      />
+
+      <TextInput
+      placeholder="Rent Range"
+      value={rentRange}
+      onChangeText={setRentRange}
+      style={{ height: 200, fontSize: 16, padding: 10, backgroundColor: '#f5f5f5', textAlignVertical: 'top' }}
       />
 
       <TouchableOpacity onPress={handlePost} style={{ backgroundColor: 'blue', paddingVertical: 10, paddingHorizontal: 20, borderRadius: 5 }}>

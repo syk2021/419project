@@ -12,7 +12,7 @@ const Registration = ({navigation}) => {
     let [registerErrorMessage, setRegisterErrorMessage] = useState("");
 
     navigateToLogin = () => {
-        navigation.navigate("RegistrationLogin");
+        navigation.navigate("Login");
     }
 
     doUserRegistration = async function (username, password) {

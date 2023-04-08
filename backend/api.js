@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 const UserModel = require('./models/user.js')
+const PostModel = require('./models/post.js')
 var bodyParser = require('body-parser')
 var jwt = require('jsonwebtoken')
 
@@ -76,6 +77,22 @@ router.post('/logout', async (req, res) => {
         this.next(err);
     }
 
+})
+
+// await axios.post('http://localhost:4000/api/newpost')
+router.post('/newpost', async (req, res) => {
+    console.log("new post page!");
+    console.log(req.body);
+    
+    const post = await PostModel.create({
+        title: req.body.title,
+        content: req.body.content,
+        username: req.body.username,
+        rentRange: req.body.rentRange
+    });
+
+    return res.status(200).json(post);
+    
 })
 
 module.exports = router;
