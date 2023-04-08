@@ -96,11 +96,19 @@ router.post('/newpost', async (req, res) => {
         title: req.body.title,
         content: req.body.content,
         username: req.body.username,
-        rentRange: req.body.rentRange
+        rentRange: req.body.rentRange,
+        startDate: req.body.startDate,
+        endDate: req.body.endDate
     });
 
     return res.status(200).json(post);
     
+})
+
+// fetch all posts in the Posts model
+// await axios.post('http://localhost:4000/api/allposts')
+router.post('/allposts', async (req, res) => {
+    console.log("fetch all posts");
 })
 
 module.exports = router;

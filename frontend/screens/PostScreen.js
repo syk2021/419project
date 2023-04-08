@@ -8,7 +8,6 @@ export default function PostScreen({ navigation }) {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const [rentRange, setRentRange] = useState('');
-  const [location, setLocation] = useState('');
   const [gender, setGender] = useState('');
   const [date, setDate] = useState('');
   const [endDate, setEndDate] = useState('');
@@ -24,8 +23,6 @@ export default function PostScreen({ navigation }) {
       content: content,
       username: user,
       rentRange: rentRange,
-      // location: location,
-      gender: gender,
       startDate: date,
       endDate: endDate
     };
@@ -78,13 +75,6 @@ export default function PostScreen({ navigation }) {
         onChangeText={setLocation}
         style={{ marginBottom: 20, fontSize: 16, padding: 10, backgroundColor: 'white', borderStyle: 'solid', borderWidth: 1, borderColor: '#c5c5c5' }}
       /> */}
-
-      <TextInput
-        placeholder="Enter your gender"
-        value={gender}
-        onChangeText={setGender}
-        style={{ marginBottom: 20, fontSize: 16, padding: 10, backgroundColor: 'white', borderStyle: 'solid', borderWidth: 1, borderColor: '#c5c5c5' }}
-      />
 
       <DatePicker
         style={{ marginBottom: 20, width: 200 }}
