@@ -1,14 +1,30 @@
-import React from 'react';
+import React, { useState, useContext } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { UserContext } from '../UserProvider.js';
+import axios from 'axios';
 
 export default function SettingsScreen({ navigation }) {
-  const user = {
-    username: 'full stack',
-    firstName: 'Lindsay',
-    lastName: 'Chen',
-    affiliation: 'Undergrad',
-    phoneNumber: '12345',
-  };
+  const { user } = useContext(UserContext);
+  const [username, setUserName] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [affiliation, setAffiliation] = useState("");
+  const [emailAddress, setEmailAddress] = useState("");
+
+  params = {
+    username: user
+  }
+  console.log("settings page");
+  axios.post('http://localhost:4000/api/finduser', params)
+  .then((response) => {
+    console.log("in settings page, response");
+    console.log(response.data);
+    setUserName(response.data.username);
+    setFirstName(response.data.firstName);
+    setLastName(response.data.lastName);
+    setAffiliation(response.data.affiliation);
+    setEmailAddress(response.data.emailAddress);
+  })
 
   const handleLogout = () => {
     console.log(`Logging out...`);
@@ -21,22 +37,22 @@ export default function SettingsScreen({ navigation }) {
 
       <View style={styles.row}>
         <Text style={styles.label}>Username:</Text>
-        <Text style={styles.value}>{user.username}</Text>
+        <Text style={styles.value}>{username}</Text>
       </View>
 
       <View style={styles.row}>
         <Text style={styles.label}>Name:</Text>
-        <Text style={styles.value}>{user.firstName} {user.lastName}</Text>
+        <Text style={styles.value}>{firstName} {lastName}</Text>
       </View>
 
       <View style={styles.row}>
         <Text style={styles.label}>Affiliation:</Text>
-        <Text style={styles.value}>{user.affiliation}</Text>
+        <Text style={styles.value}>{affiliation}</Text>
       </View>
 
       <View style={styles.row}>
-        <Text style={styles.label}>Phone Number:</Text>
-        <Text style={styles.value}>{user.phoneNumber}</Text>
+        <Text style={styles.label}>Email Address:</Text>
+        <Text style={styles.value}>{emailAddress}</Text>
       </View>
 
       <TouchableOpacity style={styles.button} onPress={handleLogout}>

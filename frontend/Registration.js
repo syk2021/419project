@@ -7,7 +7,7 @@ const Registration = ({navigation}) => {
     let [lastName, setLastName] = useState("");
     let [username, setUsername] = useState("")
     let [password, setPassword] = useState("");
-    let [phoneNumber, setPhoneNumber] = useState("");
+    let [emailAddress, setEmailAddress] = useState("");
     let [affiliation, setAffiliation] = useState("");
     let [registerErrorMessage, setRegisterErrorMessage] = useState("");
 
@@ -15,13 +15,13 @@ const Registration = ({navigation}) => {
         navigation.navigate("Login");
     }
 
-    doUserRegistration = async function (username, password) {
+    doUserRegistration = async function () {
         params = {
           username: username,
           password: password,
           firstName: firstName,
           lastName: lastName,
-          phoneNumber: phoneNumber,
+          emailAddress: emailAddress,
           affiliation: affiliation,
         };
         console.log("request is sent!")
@@ -30,10 +30,10 @@ const Registration = ({navigation}) => {
         
         axios.post('http://localhost:4000/api/register', params)
         .then((response) => {
-          console.log("success");
+          console.log("registration success");
           // results of register post stored here
           console.log(response.data);
-          navigation.navigate("RegistrationLogin");
+          navigation.navigate("Login");
         
         })
         .catch((error) => {
@@ -55,10 +55,10 @@ const Registration = ({navigation}) => {
         <TextInput style={styles.input} value={lastName} placeholder="Last Name" autoCapitalize="none" onChangeText={(text)=>setLastName(text)}/>
         <TextInput style={styles.input} value={username} placeholder="username" autoCapitalize="none" onChangeText={(text)=>setUsername(text)}/>
         <TextInput style={styles.input} value={password} placeholder="password" secureTextEntry autoCapitalize="none" onChangeText={(text)=>setPassword(text)}/>
-        <TextInput style={styles.input} value={phoneNumber} placeholder="Phone Number: OOO-OOO-OOO" onChangeText={(text)=>setPhoneNumber(text)}/>
+        <TextInput style={styles.input} value={emailAddress} placeholder="Email Address: first.last@yale.edu" autoCapitalize="none" onChangeText={(text)=>setEmailAddress(text)}/>
         <Button title="Undergraduate" onPress={()=>setAffiliation("Undergraduate")}/>
         <Button title="Graduate" onPress={() => setAffiliation("Graduate")}/>
-        <Button title={"Sign Up"} onPress={() => doUserRegistration(username, password)}/>
+        <Button title={"Sign Up"} onPress={() => doUserRegistration()}/>
         <Button title={"Back to Login"} onPress={() => navigateToLogin()}/>
         {registerErrorMessage && <Text style={styles.error}>{registerErrorMessage}</Text>}
         </View>);

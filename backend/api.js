@@ -39,7 +39,7 @@ router.post('/register', async (req, res) => {
         password: req.body.password,
         firstName: req.body.firstName,
         lastName: req.body.lastName,
-        phoneNumber: req.body.phoneNumber,
+        emailAddress: req.body.emailAddress,
         affiliation: req.body.affiliation
     });
     
@@ -79,6 +79,14 @@ router.post('/logout', async (req, res) => {
 
 })
 
+// used in SettingsScreen
+// await axios.post('http://localhost:4000/api/finduser')
+router.post('/finduser', async (req, res) => {
+    const found_user = await UserModel.findOne({ username: req.body.username }).exec();
+    return res.status(200).json(found_user);
+})
+
+// used in PostScreen
 // await axios.post('http://localhost:4000/api/newpost')
 router.post('/newpost', async (req, res) => {
     console.log("new post page!");
