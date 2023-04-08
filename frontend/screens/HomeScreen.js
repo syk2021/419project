@@ -21,7 +21,7 @@ export default function HomeScreen({ navigation }) {
   ]);
 
   const handlePress = (post) => {
-    navigation.navigate('Post', { post });
+    navigation.navigate('Details', { post });
   };
 
   const renderPost = ({ item }) => {

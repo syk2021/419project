@@ -8,12 +8,15 @@ import HomeScreen from './screens/HomeScreen';
 import DetailsScreen from './screens/DetailsScreen';
 import PostScreen from './screens/PostScreen';
 import SettingsScreen from './screens/SettingsScreen';
+import EachScreen from './screens/EachScreen';
 
 //Screen names
 const homeName = "Home";
 const detailsName = "Details";
 const postName = "Post";
 const settingsName = "Settings";
+const eachName = "Each"
+
 
 const Tab = createBottomTabNavigator();
 
@@ -44,16 +47,17 @@ function MainContainer() {
           },
         })}
         tabBarOptions={{
-          activeTintColor: 'tomato',
-          inactiveTintColor: 'grey',
-          labelStyle: { paddingBottom: 10, fontSize: 10 },
-          style: { padding: 10, height: 70}
+          activeTintColor: '#0B3D91',
+          inactiveTintColor: '#646464',
+          labelStyle: { paddingBottom: 5, fontSize: 12, fontWeight: 'bold' },
+          style: { backgroundColor: '#FFFFFF', height: 80, borderTopWidth: 1, borderTopColor: '#D4D4D4', paddingTop: 10 }
         }}>
 
         <Tab.Screen name={homeName} component={HomeScreen} />
-        <Tab.Screen name={detailsName} component={DetailsScreen} />
+        {/* <Tab.Screen name={detailsName} component={DetailsScreen} /> */}
         <Tab.Screen name={postName} component={PostScreen} />
         <Tab.Screen name={settingsName} component={SettingsScreen} />
+
 
       </Tab.Navigator>
   );

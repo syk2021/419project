@@ -1,87 +1,23 @@
-import React, { useState } from 'react';
-import { View, Text, FlatList, TouchableOpacity, StyleSheet } from 'react-native';
+import React from 'react';
+import { View, Text, TouchableOpacity } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
-export default function HomeScreen({ navigation }) {
-  const [posts, setPosts] = useState([
-    {
-      id: 1,
-      title: 'Post 1',
-      content: 'This is my first post.',
-    },
-    {
-      id: 2,
-      title: 'Post 2',
-      content: 'This is my second post.',
-    },
-    {
-      id: 3,
-      title: 'Post 3',
-      content: 'This is my third post.',
-    },
-  ]);
-
-  const handlePress = (post) => {
-    navigation.navigate('Post', { post });
-  };
-
-  const renderPost = ({ item }) => {
-    return (
-      <TouchableOpacity style={styles.post} onPress={() => handlePress(item)}>
-        <Text style={styles.postTitle}>{item.title}</Text>
-        <Text style={styles.postContent}>{item.content}</Text>
-      </TouchableOpacity>
-    );
-  };
+const DetailsScreen = ({ route }) => {
+  const { post } = route.params;
+  const navigation = useNavigation();
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>My Posts</Text>
-
-      <FlatList
-        data={posts}
-        renderItem={renderPost}
-        keyExtractor={(item) => item.id.toString()}
-        style={styles.list}
-      />
+    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+      <View style={{ position: 'absolute', top: 20, left: 20 }}>
+        <TouchableOpacity onPress={() => navigation.goBack()}>
+          <Text style={{ fontSize: 16, fontWeight: 'bold', color: '#0c2340' }}>Back to Home</Text>
+        </TouchableOpacity>
+      </View>
+      <Text style={{ fontWeight: 'bold', fontSize: 20, marginTop: 40 }}>{post.title}</Text>
+      <Text style={{ marginTop: 10, color: '#0c2340' }}>{post.description}</Text>
     </View>
   );
-}
+};
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    paddingHorizontal: 20,
-    paddingVertical: 40,
-    backgroundColor: '#F2EEE4',
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginBottom: 20,
-    color: '#0F4D92',
-    fontFamily: 'Avenir',
-  },
-  list: {
-    flex: 1,
-  },
-  post: {
-    backgroundColor: '#FFFFFF',
-    padding: 20,
-    borderRadius: 5,
-    marginBottom: 10,
-    borderWidth: 1,
-    borderColor: '#0F4D92',
-  },
-  postTitle: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    marginBottom: 10,
-    color: '#0F4D92',
-    fontFamily: 'Avenir',
-  },
-  postContent: {
-    fontSize: 14,
-    color: '#555555',
-    fontFamily: 'Avenir',
-  },
-});
+export default DetailsScreen;
+
