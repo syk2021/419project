@@ -1,25 +1,33 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { View, Text, FlatList, TouchableOpacity, StyleSheet, TextInput, ScrollView } from 'react-native';
+import { View, Text, FlatList, TouchableOpacity, StyleSheet, TextInput, ScrollView, RefreshControl } from 'react-native';
 import axios from 'axios';
 import { UserContext } from '../UserProvider.js';
 
-
 export default function HomeScreen({ navigation }) {
     const { user } = useContext(UserContext);
-    const [posts, setPosts] = useState([])
-
+    const [posts, setPosts] = useState([]);
     const [search, setSearch] = useState('');
     const [currentUserPosts, setCurrentUserPosts] = useState(false);
+    const [refreshing, setRefreshing] = useState(false);
 
     // only call function at first render
     useEffect(() => {
         // fetch all posts
+        fetchPosts();
+    },[]);
+
+    const fetchPosts = () => {
         axios.post('http://localhost:4000/api/allposts')
         .then((response) => {
-            // console.log(response.data);
             setPosts(response.data);
         })
-    },[]);
+    }
+
+    const handleRefresh = () => {
+        setRefreshing(true);
+        fetchPosts();
+        setRefreshing(false);
+    }
 
     const handlePress = (post) => {
         navigation.navigate('Details', { post });
@@ -62,8 +70,13 @@ export default function HomeScreen({ navigation }) {
             {currentUserPosts ? 'Show all posts' : 'Show my posts'}
             </Text>
         </TouchableOpacity>
-        <ScrollView>
-        <FlatList nestedScrollEnabled
+        <ScrollView
+            refreshControl={
+                <RefreshControl refreshing={refreshing} onRefresh={handleRefresh} />
+            }
+        >
+        <FlatList inverted
+            nestedScrollEnabled
             data={filteredPosts}
             renderItem={renderPost}
             keyExtractor={(item) => item._id.toString()}

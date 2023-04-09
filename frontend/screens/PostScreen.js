@@ -8,11 +8,17 @@ export default function PostScreen({ navigation }) {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const [rentRange, setRentRange] = useState('');
-  const [gender, setGender] = useState('');
   const [date, setDate] = useState('');
   const [endDate, setEndDate] = useState('');
   const { user } = useContext(UserContext);
 
+const reset = () => {
+  setTitle('');
+  setContent('');
+  setRentRange('');
+  setDate('');
+  setEndDate('');
+}
 
   const handlePost = () => {
     // Handle posting logic
@@ -33,7 +39,7 @@ export default function PostScreen({ navigation }) {
       console.log(response.data.title);
       console.log(response.data.content);
       console.log(response.data.username);
-
+      reset(); // reset all input boxes
       navigation.navigate('Home');
     })
     .catch((error) => {
@@ -68,13 +74,6 @@ export default function PostScreen({ navigation }) {
         onChangeText={setRentRange}
         style={{ marginBottom: 20, fontSize: 16, padding: 10, backgroundColor: 'white', borderStyle: 'solid', borderWidth: 1, borderColor: '#c5c5c5' }}
       />
-
-      {/* <TextInput
-        placeholder="Location"
-        value={location}
-        onChangeText={setLocation}
-        style={{ marginBottom: 20, fontSize: 16, padding: 10, backgroundColor: 'white', borderStyle: 'solid', borderWidth: 1, borderColor: '#c5c5c5' }}
-      /> */}
 
       <DatePicker
         style={{ marginBottom: 20, width: 200 }}
