@@ -1,26 +1,31 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { View, Text, FlatList, TouchableOpacity, StyleSheet, TextInput, ScrollView } from 'react-native';
 import axios from 'axios';
 import { UserContext } from '../UserProvider.js';
+
 
 export default function HomeScreen({ navigation }) {
     const { user } = useContext(UserContext);
     const [posts, setPosts] = useState([])
 
-    // fetch all posts
-    axios.post('http://localhost:4000/api/allposts')
-    .then((response) => {
-        console.log(response.data);
-        setPosts(response.data);
-    })
-
     const [search, setSearch] = useState('');
     const [currentUserPosts, setCurrentUserPosts] = useState(false);
+
+    // only call function at first render
+    useEffect(() => {
+        // fetch all posts
+        axios.post('http://localhost:4000/api/allposts')
+        .then((response) => {
+            // console.log(response.data);
+            setPosts(response.data);
+        })
+    },[]);
 
     const handlePress = (post) => {
         navigation.navigate('Details', { post });
     };
 
+    // item is single post
     const renderPost = ({ item }) => {
         return (
         <TouchableOpacity style={styles.post} onPress={() => handlePress(item)}>
@@ -39,7 +44,6 @@ export default function HomeScreen({ navigation }) {
     const filteredPosts = currentUserPosts
         ? posts.filter((post) => post.username === user) // replace with actual user id
         : posts.filter((post) => post.title.toLowerCase().includes(search.toLowerCase()));
-
 
     return (
         <View style={styles.container}>
