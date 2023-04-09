@@ -13,6 +13,7 @@ Like Python's pip, node has a package manager called `npm`.
 Just like you do `pip install (package_name)`, call `npm install (package_name)`
 For instance, this project will require you to have a package called `react-navigation-native`. 
 To install this package, call `npm install react-navigation-native` in the terminal.
+
 ** npm i in `backend` and `frontend` directories respectively will install all the dependencies you need.
 
 ## How to add a page to the app
