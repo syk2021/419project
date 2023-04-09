@@ -2,6 +2,7 @@ import React, { useState, useContext, useEffect } from 'react';
 import { View, Text, FlatList, TouchableOpacity, StyleSheet, TextInput, ScrollView, RefreshControl } from 'react-native';
 import axios from 'axios';
 import { UserContext } from '../UserProvider.js';
+import { useFocusEffect } from '@react-navigation/native';
 
 export default function HomeScreen({ navigation }) {
     const { user } = useContext(UserContext);
@@ -22,6 +23,12 @@ export default function HomeScreen({ navigation }) {
             setPosts(response.data);
         })
     }
+
+    useFocusEffect(
+      React.useCallback(() => {
+        fetchPosts();
+      }, [])
+    );
 
     const handleRefresh = () => {
         setRefreshing(true);
