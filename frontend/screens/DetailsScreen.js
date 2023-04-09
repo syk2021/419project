@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, Button } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { TextInput } from 'react-native';
 import { ScrollView } from 'react-native';
@@ -10,7 +10,6 @@ import { UserContext } from '../UserProvider.js';
 const DetailsScreen = ({ route }) => {
     const { user } = useContext(UserContext);
     const { post } = route.params;
-    console.log(post);
     const navigation = useNavigation();
 
     // Define state to hold the user's comment and the list of existing comments
@@ -49,9 +48,30 @@ const DetailsScreen = ({ route }) => {
         .catch((error) => {
           console.log(error);
         });
-        // setComments([...comments, newComment]);
         setComment('');
         
+    }
+
+    const deletePost = (post) => {
+        axios.post('http://localhost:4000/api/deletepost', post)
+        .then((response) => {
+            console.log(response);
+        })
+        .catch((error) => {
+            console.log(error);
+        })
+        navigation.navigate("Home");
+    }
+
+    const deleteComment = (comment) => {
+        axios.post('http://localhost:4000/api/deletecomment', comment)
+        .then((response) => {
+            console.log(response);
+        })
+        .catch((error) => {
+            console.log(error);
+        })
+        loadComments();
     }
 
   return (
@@ -64,6 +84,7 @@ const DetailsScreen = ({ route }) => {
         <Text style={styles.author}>By {post.username}</Text>
         <Text style={styles.content}>{post.content}</Text>
         <Text style={styles.rent}>Rent: {post.rentRange}</Text>
+        {post.username == user && <Button title="Delete" onPress={() => deletePost(post)}>Delete</Button>}
       </View>
       <View style={styles.commentSection}>
         <Text style={styles.commentTitle}>Comments:</Text>
@@ -72,6 +93,7 @@ const DetailsScreen = ({ route }) => {
             <View key={comment._id} style={styles.commentContainer}>
               <Text style={styles.commentAuthor}>{comment.username}: </Text>
               <Text style={styles.commentText}>{comment.text}</Text>
+                {comment.username == user && <Button title="Delete" onPress={() => deleteComment(comment)}>Delete</Button>}
             </View>
           ))}
         </ScrollView>
