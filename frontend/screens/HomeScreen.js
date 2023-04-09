@@ -1,91 +1,71 @@
-import React, { useState } from 'react';
-import { View, Text, FlatList, TouchableOpacity, StyleSheet, TextInput } from 'react-native';
+import React, { useState, useContext } from 'react';
+import { View, Text, FlatList, TouchableOpacity, StyleSheet, TextInput, ScrollView } from 'react-native';
+import axios from 'axios';
+import { UserContext } from '../UserProvider.js';
 
 export default function HomeScreen({ navigation }) {
-  const [posts, setPosts] = useState([
-    {
-      id: 1,
-      title: 'NH: Post 1',
-      content: 'This is the first post.',
-      author: 'User A',
-      rent: '$1000',
-      date: 'Dec',
-      endDate: 'Jan',
-      gender: 'F',
-    },
-    {
-      id: 2,
-      title: 'LA: Post 2',
-      content: 'This is the second post.',
-      author: 'User B',
-      rent: '$1000',
-      date: 'Jan',
-      endDate: 'Jan',
-      gender: 'M',
-    },
-    {
-      id: 3,
-      title: 'MA: Post 3',
-      content: 'This is the third post.',
-      author: 'User A',
-      rent: '$1000',
-      date: 'Feb',
-      endDate: 'Jan',
-      gender: 'F',
-    },
-  ]);
-  const [search, setSearch] = useState('');
-  const [currentUserPosts, setCurrentUserPosts] = useState(false);
+    const { user } = useContext(UserContext);
+    const [posts, setPosts] = useState([])
 
-  const handlePress = (post) => {
-    navigation.navigate('Details', { post });
-  };
+    // fetch all posts
+    axios.post('http://localhost:4000/api/allposts')
+    .then((response) => {
+        console.log(response.data);
+        setPosts(response.data);
+    })
 
-  const renderPost = ({ item }) => {
-    return (
-      <TouchableOpacity style={styles.post} onPress={() => handlePress(item)}>
-        <View style={styles.rentContainer}>
-          <Text style={styles.rent}>{item.rent}</Text>
-        </View>
-        <View style={styles.postDetails}>
-          <Text style={styles.postTitle}>{item.title}</Text>
-          <Text style={styles.postContent}>{item.date} - {item.endDate}</Text>
-          <Text style={styles.postAuthor}>Posted by: {item.author}</Text>
-        </View>
-      </TouchableOpacity>
-    );
+    const [search, setSearch] = useState('');
+    const [currentUserPosts, setCurrentUserPosts] = useState(false);
+
+    const handlePress = (post) => {
+        navigation.navigate('Details', { post });
+    };
+
+    const renderPost = ({ item }) => {
+        return (
+        <TouchableOpacity style={styles.post} onPress={() => handlePress(item)}>
+            <View style={styles.rentContainer}>
+            <Text style={styles.rent}>{item.rentRange}</Text>
+            </View>
+            <View style={styles.postDetails}>
+            <Text style={styles.postTitle}>{item.title}</Text>
+            <Text style={styles.postContent}>{item.startDate} - {item.endDate}</Text>
+            <Text style={styles.postAuthor}>Posted by: {item.username}</Text>
+            </View>
+        </TouchableOpacity>
+        );
   };
   
+    const filteredPosts = currentUserPosts
+        ? posts.filter((post) => post.username === user) // replace with actual user id
+        : posts.filter((post) => post.title.toLowerCase().includes(search.toLowerCase()));
 
-  const filteredPosts = currentUserPosts
-    ? posts.filter((post) => post.author === 'User A') // replace with actual user id
-    : posts.filter((post) => post.title.toLowerCase().includes(search.toLowerCase()));
 
-  return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Posts</Text>
-      <TextInput
-        placeholder="Search by title/ location"
-        style={styles.searchInput}
-        onChangeText={(text) => setSearch(text)}
-        value={search}
-      />
-      <TouchableOpacity
-        style={styles.filterButton}
-        onPress={() => setCurrentUserPosts(!currentUserPosts)}
-      >
-        <Text style={styles.filterButtonText}>
-          {currentUserPosts ? 'Show all posts' : 'Show my posts'}
-        </Text>
-      </TouchableOpacity>
-      <FlatList
-        data={filteredPosts}
-        renderItem={renderPost}
-        keyExtractor={(item) => item.id.toString()}
-        style={styles.list}
-      />
-    </View>
-  );
+    return (
+        <View style={styles.container}>
+        <Text style={styles.title}>Posts</Text>
+        <TextInput
+            placeholder="Search by title/ location"
+            style={styles.searchInput}
+            onChangeText={(text) => setSearch(text)}
+            value={search}
+        />
+        <TouchableOpacity
+            style={styles.filterButton}
+            onPress={() => setCurrentUserPosts(!currentUserPosts)}
+        >
+            <Text style={styles.filterButtonText}>
+            {currentUserPosts ? 'Show all posts' : 'Show my posts'}
+            </Text>
+        </TouchableOpacity>
+        <FlatList nestedScrollEnabled
+            data={filteredPosts}
+            renderItem={renderPost}
+            keyExtractor={(item) => item._id.toString()}
+            style={styles.list}
+        />
+        </View>
+    );
 }
 
 const styles = StyleSheet.create({

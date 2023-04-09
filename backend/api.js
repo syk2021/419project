@@ -109,6 +109,9 @@ router.post('/newpost', async (req, res) => {
 // await axios.post('http://localhost:4000/api/allposts')
 router.post('/allposts', async (req, res) => {
     console.log("fetch all posts");
+    // fetch all the posts
+    const posts = await PostModel.find({}).exec();
+    return res.status(200).json(posts);
 })
 
 module.exports = router;
