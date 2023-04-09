@@ -1,30 +1,53 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { TextInput } from 'react-native';
 import { ScrollView } from 'react-native';
+import axios from 'axios';
+import { UserContext } from '../UserProvider.js';
 
 
 const DetailsScreen = ({ route }) => {
-  const { post } = route.params;
-  const navigation = useNavigation();
+    const { user } = useContext(UserContext);
+    const { post } = route.params;
+    console.log(post);
+    const navigation = useNavigation();
 
-  // Define state to hold the user's comment and the list of existing comments
-  const [comment, setComment] = useState('');
+    // Define state to hold the user's comment and the list of existing comments
+    // comment holds one placeholder comment's textfield
+    const [comment, setComment] = useState('');
+    const [comments, setComments] = useState([]);
 
-  const [comments, setComments] = useState([
-    {id: 1, author: 'John', text: 'This is a great post!'},
-    {id: 2, author: 'Jane', text: 'Thanks for sharing your thoughts.'},
-    {id: 3, author: 'Jane', text: 'Thanks for sharing your thoughts.'},
+    const loadComments = () => {
+        // find all comments with the postId
+        params = {
+            postId: post._id
+        };
+    
+        axios.post('http://localhost:4000/api/allcomments', params)
+        .then((response) => {
+            console.log('details page');
+            console.log(response.data);
+            // load all comments
+            setComments(response.data);
+        });
+    }
 
-  ]);
+    // only call function at first render
+    useEffect(() => {
+        loadComments();
+    }, [])
 
-  const handleAddComment = () => {
-  const newComment = { id: comments.length + 1, author: 'You', text: comment };
-  setComments([...comments, newComment]);
-  setComment('');
-  }
-
+    const handleAddComment = () => {
+        const newComment = { username: user, text: comment, postId: post._id };
+        axios.post('http://localhost:4000/api/postcomment', newComment)
+        .then((response) => {
+            console.log(response);
+        })
+        // setComments([...comments, newComment]);
+        setComment('');
+        loadComments();
+    }
 
   return (
     <View style={styles.container}>
@@ -33,16 +56,16 @@ const DetailsScreen = ({ route }) => {
       </TouchableOpacity>
       <View style={styles.contentContainer}>
         <Text style={styles.title}>{post.title}</Text>
-        <Text style={styles.author}>By {post.author}</Text>
+        <Text style={styles.author}>By {post.username}</Text>
         <Text style={styles.content}>{post.content}</Text>
-        <Text style={styles.rent}>Rent: {post.rent}</Text>
+        <Text style={styles.rent}>Rent: {post.rentRange}</Text>
       </View>
       <View style={styles.commentSection}>
         <Text style={styles.commentTitle}>Comments:</Text>
         <ScrollView>
           {comments.map((comment) => (
-            <View key={comment.id} style={styles.commentContainer}>
-              <Text style={styles.commentAuthor}>{comment.author}: </Text>
+            <View key={comment._id} style={styles.commentContainer}>
+              <Text style={styles.commentAuthor}>{comment.useranme}: </Text>
               <Text style={styles.commentText}>{comment.text}</Text>
             </View>
           ))}

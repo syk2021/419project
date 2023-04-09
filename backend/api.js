@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 const UserModel = require('./models/user.js')
 const PostModel = require('./models/post.js')
+const CommentModel = require('./models/comment.js')
 var bodyParser = require('body-parser')
 var jwt = require('jsonwebtoken')
 
@@ -113,5 +114,24 @@ router.post('/allposts', async (req, res) => {
     const posts = await PostModel.find({}).exec();
     return res.status(200).json(posts);
 })
+
+// post comments
+// await axios.post('https://localhost:4000/api/postcomment')
+router.post('/postcomment', async (req, res) => {
+    console.log("post a comment");
+    const comment = await CommentModel.create({
+        username: req.body.username,
+        text: req.body.text,
+        postId: req.body.postId
+    });
+    return res.status(200).json(comment);
+})
+
+// get all comments for that post
+router.post('/allcomments', async (req, res) => {
+    console.log("get all comments");
+    const comments = await CommentModel.find({ postId: req.body.postId }).exec();
+    return res.status(200).json(comments);
+});
 
 module.exports = router;
