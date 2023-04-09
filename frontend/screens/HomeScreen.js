@@ -62,12 +62,14 @@ export default function HomeScreen({ navigation }) {
             {currentUserPosts ? 'Show all posts' : 'Show my posts'}
             </Text>
         </TouchableOpacity>
+        <ScrollView>
         <FlatList nestedScrollEnabled
             data={filteredPosts}
             renderItem={renderPost}
             keyExtractor={(item) => item._id.toString()}
             style={styles.list}
         />
+        </ScrollView>
         </View>
     );
 }
