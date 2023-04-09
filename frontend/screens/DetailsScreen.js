@@ -29,6 +29,7 @@ const DetailsScreen = ({ route }) => {
             console.log('details page');
             console.log(response.data);
             // load all comments
+            // loadComments()
             setComments(response.data);
         });
     }
@@ -43,10 +44,14 @@ const DetailsScreen = ({ route }) => {
         axios.post('http://localhost:4000/api/postcomment', newComment)
         .then((response) => {
             console.log(response);
+            loadComments();
         })
+        .catch((error) => {
+          console.log(error);
+        });
         // setComments([...comments, newComment]);
         setComment('');
-        loadComments();
+        
     }
 
   return (
