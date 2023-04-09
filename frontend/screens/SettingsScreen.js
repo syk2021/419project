@@ -4,7 +4,7 @@ import { UserContext } from '../UserProvider.js';
 import axios from 'axios';
 
 export default function SettingsScreen({ navigation }) {
-  const { user } = useContext(UserContext);
+  const { user, setUser } = useContext(UserContext);
   const [username, setUserName] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -28,6 +28,8 @@ export default function SettingsScreen({ navigation }) {
 
   const handleLogout = () => {
     console.log(`Logging out...`);
+    // forget user in the context provider
+    setUser('');
     navigation.navigate('Login');
   };
 

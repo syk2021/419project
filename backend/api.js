@@ -134,4 +134,18 @@ router.post('/allcomments', async (req, res) => {
     return res.status(200).json(comments);
 });
 
+// delete a post
+router.post('/deletepost', async (req, res) => {
+    console.log("deleting posts");
+    const result = await PostModel.findByIdAndDelete(req.body._id).exec();
+    return res.status(200).json(result);
+})
+
+// delete a comment
+router.post('/deletecomment', async (req, res) => {
+    console.log("deleting a comment");
+    const result = await CommentModel.findByIdAndDelete(req.body._id).exec();
+    return res.status(200).json(result);
+})
+
 module.exports = router;
