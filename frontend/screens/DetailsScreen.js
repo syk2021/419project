@@ -65,7 +65,7 @@ const DetailsScreen = ({ route }) => {
         <ScrollView>
           {comments.map((comment) => (
             <View key={comment._id} style={styles.commentContainer}>
-              <Text style={styles.commentAuthor}>{comment.useranme}: </Text>
+              <Text style={styles.commentAuthor}>{comment.username}: </Text>
               <Text style={styles.commentText}>{comment.text}</Text>
             </View>
           ))}
