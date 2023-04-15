@@ -81,22 +81,22 @@ const DetailsScreen = ({ route }) => {
       </TouchableOpacity>
       <View style={styles.contentContainer}>
         <Text style={styles.title}>{post.title}</Text>
+        <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
         <Text style={styles.author}>By {post.username}</Text>
+        <Text style={styles.date}>{post.startDate} to {post.endDate}</Text>
+        </View>
         <Text style={styles.content}>{post.content}</Text>
-        <Text style={styles.rent}>Rent: {post.rentRange}</Text>
-        {post.username == user && <Button title="Delete" onPress={() => deletePost(post)}>Delete</Button>}
+        <Text style={styles.rent}>Rent: {post.rentRange}/month</Text>
+        {/* {post.username == user && <Button title="Delete" onPress={() => deletePost(post)}>Delete</Button>} */}
+        {post.username == user && (
+          <TouchableOpacity style={[styles.commentButton, { alignSelf: 'center'}]} onPress={() => deletePost(post)}>
+            <Text style={styles.commentButtonText}>Delete</Text>
+          </TouchableOpacity>
+        )}
+
       </View>
       <View style={styles.commentSection}>
         <Text style={styles.commentTitle}>Comments:</Text>
-        <ScrollView>
-          {comments.map((comment) => (
-            <View key={comment._id} style={styles.commentContainer}>
-              <Text style={styles.commentAuthor}>{comment.username}: </Text>
-              <Text style={styles.commentText}>{comment.text}</Text>
-                {comment.username == user && <Button title="Delete" onPress={() => deleteComment(comment)}>Delete</Button>}
-            </View>
-          ))}
-        </ScrollView>
         <View style={styles.commentInputContainer}>
         <TextInput 
           style={styles.commentInput} 
@@ -111,6 +111,22 @@ const DetailsScreen = ({ route }) => {
           <Text style={styles.commentButtonText}>Post</Text>
         </TouchableOpacity>
       </View>
+      <ScrollView inverted>
+        {comments.slice().reverse().map((comment) => (
+          <View key={comment._id} style={styles.commentContainer}>
+            <Text style={styles.commentAuthor}>{comment.username}: </Text>
+            <Text style={styles.commentText}>{comment.text}</Text>
+            {/* {comment.username == user && <Button title="Delete" onPress={() => deleteComment(comment)}>Delete</Button>} */}
+            {comment.username == user && (
+              <TouchableOpacity style={[styles.commentButton, { alignSelf: 'center'}]} onPress={() => deleteComment(comment)}>
+              <Text style={styles.commentButtonText}>Delete</Text>
+              </TouchableOpacity>
+            )}
+          </View>
+        ))}
+      </ScrollView>
+
+        
       </View>
     </View>
   );
@@ -159,6 +175,12 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: '#0c2340',
     marginBottom: 20,
+  },
+  date: {
+    fontSize: 14,
+    color: 'gray',
+    textAlign: 'right',
+    // alignSelf: 'center',
   },
   content: {
     fontSize: 18,
