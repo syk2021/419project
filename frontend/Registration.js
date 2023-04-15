@@ -88,7 +88,7 @@ const Registration = ({navigation}) => {
           <Button title="Undergraduate" onPress={() => setAffiliation('Undergraduate')} />
           <Button title="Graduate" onPress={() => setAffiliation('Graduate')} />
         </View> */}
-        <View style={{ flexDirection: 'row', marginBottom: 20 }}>
+        <View style={{ flexDirection: 'row', justifyContent: 'center', marginBottom: 20 }}>
           <TouchableOpacity 
             style={[
               styles.optionButton, 
@@ -193,16 +193,19 @@ const styles = StyleSheet.create({
     height: 40,
     backgroundColor: '#00356B',
     borderRadius: 5,
-    marginRight: 10,
+    marginLeft: 25,
+    marginRight: 25,
   },
   selectedOptionButton: {
     backgroundColor: '#0c2340',
   },
   optionButtonText: {
     color: '#fff',
+    fontWeight: 'bold',
   },
   selectedOptionButtonText: {
     color: '#fff',
+    fontWeight: 'bold',
   },
   
 });

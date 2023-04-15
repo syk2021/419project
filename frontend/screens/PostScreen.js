@@ -48,35 +48,35 @@ const reset = () => {
   }
 
   return (
-    <View style={{ flex: 1, paddingHorizontal: 20, paddingVertical: 40, backgroundColor: '#f0f0f0' }}>
-      <Text style={{ fontSize: 24, fontWeight: 'bold', marginBottom: 20, color: '#0F4D92' }}>
+    <View style={{ flex: 1, paddingHorizontal: 20, paddingVertical: 40, backgroundColor: '#f0f0f0', borderWidth: 2, borderColor: '#ddd', borderRadius: 10 }}>
+      <Text style={{ fontSize: 30, fontWeight: 'bold', marginBottom: 20, color: '#00356B' }}>
         Create a New Post
       </Text>
-
+  
       <TextInput
         placeholder="Enter location (full name) + title"
         value={title}
         onChangeText={setTitle}
-        style={{ marginBottom: 20, fontSize: 16, padding: 10, backgroundColor: 'white', borderStyle: 'solid', borderWidth: 1, borderColor: '#c5c5c5' }}
+        style={{ marginBottom: 20, fontSize: 16, padding: 10, backgroundColor: 'white', borderWidth: 1, borderColor: '#c5c5c5', borderRadius: 5 }}
       />
-
+  
       <TextInput
         placeholder="Enter your post content"
         value={content}
         onChangeText={setContent}
         multiline={true}
-        style={{ height: 150, fontSize: 16, padding: 10, backgroundColor: 'white', borderStyle: 'solid', borderWidth: 1, borderColor: '#c5c5c5', textAlignVertical: 'top' }}
+        style={{ height: 150, fontSize: 16, padding: 10, backgroundColor: 'white', borderWidth: 1, borderColor: '#c5c5c5', borderRadius: 5, textAlignVertical: 'top' }}
       />
-
+  
       <TextInput
         placeholder="Enter your rent per month"
         value={rentRange}
         onChangeText={setRentRange}
-        style={{ marginBottom: 20, fontSize: 16, padding: 10, backgroundColor: 'white', borderStyle: 'solid', borderWidth: 1, borderColor: '#c5c5c5' }}
+        style={{ marginBottom: 20, fontSize: 16, padding: 10, backgroundColor: 'white', borderWidth: 1, borderColor: '#c5c5c5', borderRadius: 5 }}
       />
-
+  
       <DatePicker
-        style={{ marginBottom: 20, width: 200 }}
+        style={{ marginBottom: 20, width: '100%' }}
         date={date}
         mode="date"
         placeholder="Select start date"
@@ -87,7 +87,6 @@ const reset = () => {
         customStyles={{
           dateInput: {
             backgroundColor: 'white',
-            borderStyle: 'solid',
             borderWidth: 1,
             borderColor: '#c5c5c5',
             borderRadius: 5,
@@ -101,9 +100,9 @@ const reset = () => {
         }}
         onDateChange={(startDate) => setDate(startDate)}
       />
-
+  
       <DatePicker
-        style={{ marginBottom: 20, width: 200 }}
+        style={{ marginBottom: 20, width: '100%' }}
         date={endDate}
         mode="date"
         placeholder="Select end date"
@@ -114,7 +113,6 @@ const reset = () => {
         customStyles={{
           dateInput: {
             backgroundColor: 'white',
-            borderStyle: 'solid',
             borderWidth: 1,
             borderColor: '#c5c5c5',
             borderRadius: 5,
@@ -128,13 +126,15 @@ const reset = () => {
         }}
         onDateChange={(endDate) => setEndDate(endDate)}
       />
-
-
-      <TouchableOpacity onPress={handlePost} style={{ backgroundColor: '#0F4D92', paddingVertical: 10, paddingHorizontal: 20, borderRadius: 5 }}>
-        <Text style={{ color: 'white', fontSize: 18 }}>Post</Text>
+  
+      <TouchableOpacity onPress={handlePost} style={{ backgroundColor: '#00356B', paddingVertical: 10, paddingHorizontal: 20, borderRadius: 5, alignItems: 'center' }}>
+        <Text style={{ color: 'white', fontSize: 18, fontWeight: 'bold' }}>Post</Text>
       </TouchableOpacity>
     </View>
   );
+  
+
+  
 }
 
 

@@ -49,78 +49,97 @@ export default function SettingsScreen({ navigation }) {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Settings</Text>
-
+      <View style={styles.header}>
+        <Text style={styles.title}>Settings</Text>
+      </View>
+  
       <View style={styles.row}>
-        <Text style={styles.label}>Username:</Text>
+        <Text style={styles.label}>Username</Text>
         <Text style={styles.value}>{username}</Text>
       </View>
-
+  
       <View style={styles.row}>
-        <Text style={styles.label}>Name:</Text>
+        <Text style={styles.label}>Name</Text>
         <Text style={styles.value}>{firstName} {lastName}</Text>
       </View>
-
+  
       <View style={styles.row}>
-        <Text style={styles.label}>Affiliation:</Text>
+        <Text style={styles.label}>Affiliation</Text>
         <Text style={styles.value}>{affiliation}</Text>
       </View>
-
+  
       <View style={styles.row}>
-        <Text style={styles.label}>Email Address:</Text>
+        <Text style={styles.label}>Email Address</Text>
         <Text style={styles.value}>{emailAddress}</Text>
       </View>
-
-      <TouchableOpacity style={styles.button} onPress={handleLogout}>
-        <Text style={styles.buttonText}>Log Out</Text>
+  
+      <TouchableOpacity style={styles.logoutButton} onPress={handleLogout}>
+        <Text style={styles.logoutButtonText}>Log Out</Text>
       </TouchableOpacity>
-      <TouchableOpacity style={styles.button} onPress={()=> handleDelete(user)}>
-        <Text style={styles.buttonText}>Delete Account</Text>
+  
+      <TouchableOpacity style={styles.deleteButton} onPress={() => handleDelete(user)}>
+        <Text style={styles.deleteButtonText}>Delete Account</Text>
       </TouchableOpacity>
     </View>
   );
 }
+  
+  const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      backgroundColor: '#F5F5F5',
+      paddingHorizontal: 30,
+      paddingTop: 50,
+    },
+    header: {
+      marginBottom: 50,
+    },
+    title: {
+      fontSize: 36,
+      fontWeight: 'bold',
+      color: '#00356B',
+    },
+    row: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      justifyContent: 'space-between',
+      borderBottomWidth: 1,
+      borderBottomColor: '#ddd',
+      paddingBottom: 15,
+      marginBottom: 15,
+    },
+    label: {
+      fontSize: 18,
+      color: '#999',
+    },
+    value: {
+      fontSize: 18,
+      color: '#000',
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    paddingHorizontal: 20,
-    paddingVertical: 40,
-    backgroundColor: '#f0f0f0',
-  },
-  title: {
-    fontSize: 36,
-    fontWeight: 'bold',
-    marginBottom: 30,
-    color: '#0F4D92',
-  },
-  row: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    marginBottom: 20,
-  },
-  label: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    marginRight: 10,
-    color: '#0F4D92',
-  },
-  value: {
-    fontSize: 20,
-    color: '#0F4D92',
-  },
-  button: {
-    backgroundColor: '#0F4D92',
-    paddingVertical: 12,
-    paddingHorizontal: 20,
-    borderRadius: 5,
-    marginTop: 30,
-  },
-  buttonText: {
-    color: 'white',
-    fontSize: 20,
-    fontWeight: 'bold',
-    textAlign: 'center',
-  },
-});
+    },
+    logoutButton: {
+      backgroundColor: '#00356B',
+      paddingVertical: 15,
+      borderRadius: 5,
+      marginTop: 30,
+    },
+    logoutButtonText: {
+      color: '#fff',
+      fontSize: 20,
+      fontWeight: 'bold',
+      textAlign: 'center',
+    },
+    deleteButton: {
+      backgroundColor: '#993d36',
+      paddingVertical: 15,
+      borderRadius: 5,
+      marginTop: 10,
+    },
+    deleteButtonText: {
+      color: '#fff',
+      fontSize: 20,
+      fontWeight: 'bold',
+      textAlign: 'center',
+    },
+  });
+  
