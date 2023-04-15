@@ -100,7 +100,21 @@ export default function HomeScreen({ navigation }) {
 
     return (
         <View style={styles.container}>
-        <Text style={styles.title}>Posts</Text>
+          <View style={styles.header}>
+            <View style={{ flexDirection: 'row' }}>
+              <Text style={styles.title}>Posts</Text>
+              <TouchableOpacity
+                style={[styles.postFilter, { alignSelf: 'flex-end' }]}
+                onPress={() => setCurrentUserPosts(!currentUserPosts)}
+              >
+                <Text style={styles.myButton}>
+                  {currentUserPosts ? 'Show all posts' : 'Show my posts'}
+                </Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+
+
         <TextInput
             placeholder="Search by title/ location"
             style={styles.searchInput}
@@ -108,7 +122,7 @@ export default function HomeScreen({ navigation }) {
             value={search}
         />
         <DatePicker
-        style={{ marginBottom: 20, width: 200 }}
+        style={{ marginBottom: 10, width: 200 }}
         date={searchStartDate}
         mode="date"
         placeholder="Select start date"
@@ -136,7 +150,7 @@ export default function HomeScreen({ navigation }) {
         
 
         <DatePicker
-        style={{ marginBottom: 20, width: 200 }}
+        style={{ marginBottom: 15, width: 200 }}
         date={searchEndDate}
         mode="date"
         placeholder="Select end date"
@@ -170,14 +184,7 @@ export default function HomeScreen({ navigation }) {
             {searchDatePosts ? 'Back to all posts' : 'Search by date'}
             </Text>
         </TouchableOpacity>
-        <TouchableOpacity
-            style={styles.filterButton}
-            onPress={() => setCurrentUserPosts(!currentUserPosts)}
-        >
-            <Text style={styles.filterButtonText}>
-            {currentUserPosts ? 'Show all posts' : 'Show my posts'}
-            </Text>
-        </TouchableOpacity>
+
         <ScrollView
             refreshControl={
                 <RefreshControl refreshing={refreshing} onRefresh={handleRefresh}  />
@@ -196,18 +203,27 @@ export default function HomeScreen({ navigation }) {
 }
 
 const styles = StyleSheet.create({
+  header: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingHorizontal: 16,
+    paddingVertical: 8,
+
+  },
   container: {
     flex: 1,
     paddingHorizontal: 20,
-    paddingVertical: 40,
+    paddingVertical: 20,
     backgroundColor: '#f0f0f0',
+    justifyContent: 'flex-start',
   },
   title: {
-    fontSize: 24,
+    fontSize: 30,
     fontWeight: 'bold',
     marginBottom: 20,
     color: '#00356B',
-    fontFamily: 'Avenir',
+
   },
   searchInput: {
     height: 40,
@@ -215,7 +231,22 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     borderColor: '#0F4D92',
     paddingHorizontal: 10,
-    marginBottom: 10,
+    marginBottom: 15,
+  },
+  postFilter: {
+    backgroundColor: '#00356B',
+    borderRadius: 5,
+    paddingHorizontal: 10,
+    paddingVertical: 5,
+    marginLeft: 10,
+  
+  },
+  myButton:{
+    color: '#fff',
+    textAlign: 'center',
+    fontWeight: 'bold',
+    fontSize: 15,
+    textAlign: 'right'
   },
   filterButton: {
     backgroundColor: '#00356B',
@@ -227,6 +258,7 @@ const styles = StyleSheet.create({
     color: '#fff',
     textAlign: 'center',
     fontWeight: 'bold',
+    fontSize: 15
   },
   list: {
     flex: 1,
@@ -276,6 +308,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontFamily: 'Avenir',
   },
+
 });
 
 
