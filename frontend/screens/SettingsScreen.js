@@ -33,6 +33,18 @@ export default function SettingsScreen({ navigation }) {
     navigation.navigate('Login');
   };
 
+  const handleDelete = (account) => {
+    // delete user's account
+    axios.post('http://localhost:4000/api/deleteaccount', account)
+    .then((response) => {
+        console.log(response);
+    })
+    .catch((error) => {
+        console.log(error);
+    })
+    navigation.navigate("Login");
+  };
+
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Settings</Text>
@@ -58,7 +70,10 @@ export default function SettingsScreen({ navigation }) {
       </View>
 
       <TouchableOpacity style={styles.button} onPress={handleLogout}>
-        <Text style={styles.buttonText}>Log out</Text>
+        <Text style={styles.buttonText}>Log Out</Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.button} onPress={handleDelete(account)}>
+        <Text style={styles.buttonText}>Delete Account</Text>
       </TouchableOpacity>
     </View>
   );
