@@ -3,6 +3,7 @@ import { View, Text, FlatList, TouchableOpacity, StyleSheet, TextInput, ScrollVi
 import axios from 'axios';
 import { UserContext } from '../UserProvider.js';
 import { useFocusEffect } from '@react-navigation/native';
+import DatePicker from 'react-native-datepicker';
 
 export default function HomeScreen({ navigation }) {
     const { user } = useContext(UserContext);
@@ -10,6 +11,9 @@ export default function HomeScreen({ navigation }) {
     const [search, setSearch] = useState('');
     const [currentUserPosts, setCurrentUserPosts] = useState(false);
     const [refreshing, setRefreshing] = useState(false);
+    const [searchDatePosts, setSearchDatePosts] = useState(false);
+    const [searchStartDate, setStartDate] = useState('');
+    const [searchEndDate, setEndDate] = useState('');
 
     // only call function at first render
     useEffect(() => {
@@ -54,7 +58,36 @@ export default function HomeScreen({ navigation }) {
             </View>
         </TouchableOpacity>
         );
-  };
+    };
+
+    // fetch filtered posts
+    const fetchFilteredPosts = () => {
+      if (!searchDatePosts) {
+        params = {
+          searchStartDate: searchStartDate,
+          searchEndDate: searchEndDate,
+        }
+        axios.post('http://localhost:4000/api/filteredposts', params)
+        .then((response) => {
+          console.log("filtered post success");
+          setPosts(response.data);
+        })
+        .catch((error) => {
+          console.log(error);
+        })
+        // we searched by dates, so set this to true
+        setSearchDatePosts(true);
+      }
+      else {
+        axios.post('http://localhost:4000/api/allposts')
+        .then((response) => {
+          setPosts(response.data);
+        })
+        .catch((error) => {
+          console.log(error);
+        })
+      }
+    }
   
     const filteredPosts = currentUserPosts
         ? posts.filter((post) => post.username === user) // replace with actual user id
@@ -69,6 +102,69 @@ export default function HomeScreen({ navigation }) {
             onChangeText={(text) => setSearch(text)}
             value={search}
         />
+
+        <DatePicker
+        style={{ marginBottom: 20, width: 200 }}
+        date={searchStartDate}
+        mode="date"
+        placeholder="Select start date"
+        format="YYYY-MM-DD"
+        minDate={new Date()}
+        confirmBtnText="Confirm"
+        cancelBtnText="Cancel"
+        customStyles={{
+          dateInput: {
+            backgroundColor: 'white',
+            borderStyle: 'solid',
+            borderWidth: 1,
+            borderColor: '#c5c5c5',
+            borderRadius: 5,
+            alignItems: 'flex-start',
+            paddingLeft: 10
+          },
+          placeholderText: {
+            fontSize: 16,
+            color: '#c5c5c5'
+          }
+        }}
+        onDateChange={(startDate) => setStartDate(startDate)}
+        />
+
+        <DatePicker
+        style={{ marginBottom: 20, width: 200 }}
+        date={searchEndDate}
+        mode="date"
+        placeholder="Select end date"
+        format="YYYY-MM-DD"
+        minDate={new Date(searchStartDate)}
+        confirmBtnText="Confirm"
+        cancelBtnText="Cancel"
+        customStyles={{
+          dateInput: {
+            backgroundColor: 'white',
+            borderStyle: 'solid',
+            borderWidth: 1,
+            borderColor: '#c5c5c5',
+            borderRadius: 5,
+            alignItems: 'flex-start',
+            paddingLeft: 10,
+          },
+          placeholderText: {
+            fontSize: 16,
+            color: '#c5c5c5'
+          }
+        }}
+        onDateChange={(endDate) => setEndDate(endDate)}
+      />
+        <TouchableOpacity
+            style={styles.filterButton}
+            onPress={() => fetchFilteredPosts()}
+        >
+            <Text style={styles.filterButtonText}>
+            {searchDatePosts ? 'Back to all posts' : 'Search by date'}
+            </Text>
+        </TouchableOpacity>
+
         <TouchableOpacity
             style={styles.filterButton}
             onPress={() => setCurrentUserPosts(!currentUserPosts)}
