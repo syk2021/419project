@@ -113,7 +113,7 @@ export default function SettingsScreen({ navigation }) {
       color: '#999',
     },
     value: {
-      fontSize: 18,
+      fontSize: 16,
       color: '#000',
 
     },
