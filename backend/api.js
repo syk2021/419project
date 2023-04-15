@@ -111,7 +111,7 @@ router.post('/newpost', async (req, res) => {
 router.post('/allposts', async (req, res) => {
     console.log("fetch all posts");
     // fetch all the posts
-    const posts = await PostModel.find({}).exec();
+    const posts = await PostModel.find({}).sort({ rentRange: -1}).exec();
     return res.status(200).json(posts);
 })
 
@@ -145,6 +145,12 @@ router.post('/deletepost', async (req, res) => {
 router.post('/deletecomment', async (req, res) => {
     console.log("deleting a comment");
     const result = await CommentModel.findByIdAndDelete(req.body._id).exec();
+    return res.status(200).json(result);
+})
+
+// delete account
+router.post('/deleteaccount', async (req, res) => {
+    const result = await UserModel.findByIdAndDelete(req.body._id).exec();
     return res.status(200).json(result);
 })
 
