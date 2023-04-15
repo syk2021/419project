@@ -86,7 +86,8 @@ const DetailsScreen = ({ route }) => {
         </View>
         <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
           <Text style={styles.author}>By {post.username}</Text>
-          <Text style={styles.date}>{post.startDate.toString().substring(0,10)} to {post.endDate.toString().substring(0,10)}</Text>
+          <Text style={styles.date}>{post.startDate ? post.startDate.toString().substring(0,10) : ''} - 
+              {post.endDate ? post.endDate.toString().substring(0, 10) : ''}</Text>
         </View>
         <Text style={styles.content}>{post.content}</Text>
 
