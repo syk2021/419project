@@ -144,7 +144,7 @@ router.post('/deletepost', async (req, res) => {
 // delete a comment
 router.post('/deletecomment', async (req, res) => {
     console.log("deleting a comment");
-    const result = await CommentModel.findByIdAndDelete(req.body._id).exec();
+    const result = await CommentModel.findOneAndDelete({username: req.body._id}).exec();
     return res.status(200).json(result);
 })
 

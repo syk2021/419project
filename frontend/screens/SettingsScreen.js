@@ -3,6 +3,7 @@ import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { UserContext } from '../UserProvider.js';
 import axios from 'axios';
 
+
 export default function SettingsScreen({ navigation }) {
   const { user, setUser } = useContext(UserContext);
   const [username, setUserName] = useState("");
@@ -33,16 +34,17 @@ export default function SettingsScreen({ navigation }) {
     navigation.navigate('Login');
   };
 
-  const handleDelete = (account) => {
+  const handleDelete = (user) => {
     // delete user's account
-    axios.post('http://localhost:4000/api/deleteaccount', account)
+    axios.post('http://localhost:4000/api/deleteaccount', user)
     .then((response) => {
-        console.log(response);
+        console.log("succeeded");
+        setUser('')
+        navigation.navigate('Login');
     })
     .catch((error) => {
-        console.log(error);
+        console.log("error: " + error);
     })
-    navigation.navigate("Login");
   };
 
   return (
@@ -72,7 +74,7 @@ export default function SettingsScreen({ navigation }) {
       <TouchableOpacity style={styles.button} onPress={handleLogout}>
         <Text style={styles.buttonText}>Log Out</Text>
       </TouchableOpacity>
-      <TouchableOpacity style={styles.button} onPress={handleDelete(account)}>
+      <TouchableOpacity style={styles.button} onPress={()=> handleDelete(user)}>
         <Text style={styles.buttonText}>Delete Account</Text>
       </TouchableOpacity>
     </View>
