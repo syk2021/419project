@@ -28,7 +28,6 @@ const DetailsScreen = ({ route }) => {
             console.log('details page');
             console.log(response.data);
             // load all comments
-            // loadComments()
             setComments(response.data);
         });
     }
@@ -66,27 +65,28 @@ const DetailsScreen = ({ route }) => {
     const deleteComment = (comment) => {
         axios.post('http://localhost:4000/api/deletecomment', comment)
         .then((response) => {
-            console.log(response);
+            console.log(response.data);
+            loadComments();
         })
         .catch((error) => {
             console.log(error);
         })
-        loadComments();
     }
 
   return (
+    
     <View style={styles.container}>
-      <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backButton}>
+      <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backButton} >
         <Text style={styles.backButtonText}>Back to Home</Text>
       </TouchableOpacity>
       <View style={styles.contentContainer}>
         <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-        <Text style={styles.title}>{post.title}</Text>
-        <Text style={styles.rent}>Rent: {post.rentRange}/month</Text>
+          <Text style={styles.title}>{post.title}</Text>
+          <Text style={styles.rent}>Rent: {post.rentRange}/month</Text>
         </View>
         <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-        <Text style={styles.author}>By {post.username}</Text>
-        <Text style={styles.date}>{post.startDate} to {post.endDate}</Text>
+          <Text style={styles.author}>By {post.username}</Text>
+          <Text style={styles.date}>{post.startDate.toString().substring(0,10)} to {post.endDate.toString().substring(0,10)}</Text>
         </View>
         <Text style={styles.content}>{post.content}</Text>
 
@@ -98,6 +98,7 @@ const DetailsScreen = ({ route }) => {
         )}
 
       </View>
+      
       <View style={styles.commentSection}>
         <Text style={styles.commentTitle}>Comments:</Text>
         <View style={styles.commentInputContainer}>
@@ -122,7 +123,7 @@ const DetailsScreen = ({ route }) => {
             {/* {comment.username == user && <Button title="Delete" onPress={() => deleteComment(comment)}>Delete</Button>} */}
             {comment.username == user && (
               <TouchableOpacity style={[styles.commentButton, { alignSelf: 'center'}]} onPress={() => deleteComment(comment)}>
-              <Text style={styles.commentButtonText}>Delete</Text>
+                <Text style={styles.commentButtonText}>Delete</Text>
               </TouchableOpacity>
             )}
           </View>
@@ -140,12 +141,12 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#f2f2f2',
     paddingHorizontal: 20,
-    paddingTop: 40,
+    paddingTop: 80,
   },
   backButton: {
     position: 'absolute',
-    top: 20,
-    left: 20,
+    top: 50,
+    left: 10,
     zIndex: 1,
     backgroundColor: '#0c2340',
     paddingVertical: 10,
