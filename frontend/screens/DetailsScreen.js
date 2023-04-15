@@ -80,13 +80,16 @@ const DetailsScreen = ({ route }) => {
         <Text style={styles.backButtonText}>Back to Home</Text>
       </TouchableOpacity>
       <View style={styles.contentContainer}>
+        <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
         <Text style={styles.title}>{post.title}</Text>
+        <Text style={styles.rent}>Rent: {post.rentRange}/month</Text>
+        </View>
         <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
         <Text style={styles.author}>By {post.username}</Text>
         <Text style={styles.date}>{post.startDate} to {post.endDate}</Text>
         </View>
         <Text style={styles.content}>{post.content}</Text>
-        <Text style={styles.rent}>Rent: {post.rentRange}/month</Text>
+
         {/* {post.username == user && <Button title="Delete" onPress={() => deletePost(post)}>Delete</Button>} */}
         {post.username == user && (
           <TouchableOpacity style={[styles.commentButton, { alignSelf: 'center'}]} onPress={() => deletePost(post)}>
@@ -189,8 +192,8 @@ const styles = StyleSheet.create({
   },
   rent: {
     fontSize: 20,
-    fontWeight: 'bold',
     color: '#0c2340',
+    textAlign: 'right',
   },
   commentContainer: {
     backgroundColor: '#ffffff',
