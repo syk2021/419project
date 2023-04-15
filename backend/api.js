@@ -115,6 +115,20 @@ router.post('/allposts', async (req, res) => {
     return res.status(200).json(posts);
 })
 
+// fetch posts with filtered results
+router.post('/filteredposts', async (req, res) => {
+    console.log("filtered posts");
+    const posts = await PostModel.find({
+        startDate: {
+            $lte: req.body.searchStartDate
+        },
+        endDate: {
+            $gte: req.body.searchEndDate
+        }
+    }).exec();
+    return res.status(200).json(posts);
+})
+
 // post comments
 // await axios.post('https://localhost:4000/api/postcomment')
 router.post('/postcomment', async (req, res) => {
