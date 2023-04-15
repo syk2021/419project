@@ -5,6 +5,7 @@ import { UserContext } from '../UserProvider.js';
 import { useFocusEffect } from '@react-navigation/native';
 import DatePicker from 'react-native-datepicker';
 
+
 export default function HomeScreen({ navigation }) {
     const { user } = useContext(UserContext);
     const [posts, setPosts] = useState([]);
@@ -53,7 +54,11 @@ export default function HomeScreen({ navigation }) {
             </View>
             <View style={styles.postDetails}>
             <Text style={styles.postTitle}>{item.title}</Text>
-            <Text style={styles.postContent}>{item.startDate.toString().substring(0,10)} - {item.endDate.toString().substring(0, 10)}</Text>
+            <Text style={styles.postContent}>
+              {item.startDate ? item.startDate.toString().substring(0,10) : ''} - 
+              {item.endDate ? item.endDate.toString().substring(0, 10) : ''}
+            </Text>
+
             <Text style={styles.postAuthor}>Posted by: {item.username}</Text>
             </View>
         </TouchableOpacity>
