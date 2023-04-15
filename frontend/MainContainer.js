@@ -1,22 +1,19 @@
 import * as React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+// if we don't load this, Ionicons error message
+Ionicons.loadFont();
 
 // Screens
 import HomeScreen from './screens/HomeScreen';
-import DetailsScreen from './screens/DetailsScreen';
 import PostScreen from './screens/PostScreen';
 import SettingsScreen from './screens/SettingsScreen';
-import EachScreen from './screens/EachScreen';
 
 //Screen names
 const homeName = "Home";
 const detailsName = "Details";
 const postName = "Post";
 const settingsName = "Settings";
-const eachName = "Each"
-
 
 const Tab = createBottomTabNavigator();
 
@@ -24,7 +21,8 @@ function MainContainer() {
   return (
       <Tab.Navigator
         initialRouteName={homeName}
-        screenOptions={({ route }) => ({
+        screenOptions={({ route}) => ({
+          headerShown: false,
           tabBarIcon: ({ focused, color, size }) => {
             let iconName;
             let rn = route.name;
@@ -32,11 +30,8 @@ function MainContainer() {
             if (rn === homeName) {
               iconName = focused ? 'home' : 'home-outline';
 
-            } else if (rn === detailsName) {
-              iconName = focused ? 'list' : 'list-outline';
-
             } else if (rn === postName) {
-              iconName = focused ? 'post' : 'post-outline';
+              iconName = focused ? 'add-circle' : 'add-circle-outline';
 
             } else if (rn === settingsName) {
               iconName = focused ? 'settings' : 'settings-outline';
@@ -54,10 +49,8 @@ function MainContainer() {
         }}>
 
         <Tab.Screen name={homeName} component={HomeScreen} />
-        {/* <Tab.Screen name={detailsName} component={DetailsScreen} /> */}
         <Tab.Screen name={postName} component={PostScreen} />
         <Tab.Screen name={settingsName} component={SettingsScreen} />
-
 
       </Tab.Navigator>
   );
