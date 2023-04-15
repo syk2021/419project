@@ -9,6 +9,12 @@ var PostSchema = new Schema({
         default: Date.now,
         auto: true,
     },
+    startDate: {
+        type: Date,
+    },
+    endDate: {
+        type: Date,
+    },
     username: String,
     rentRange: Number,
 });
