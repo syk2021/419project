@@ -53,7 +53,7 @@ export default function HomeScreen({ navigation }) {
             </View>
             <View style={styles.postDetails}>
             <Text style={styles.postTitle}>{item.title}</Text>
-            <Text style={styles.postContent}>{item.startDate} - {item.endDate}</Text>
+            <Text style={styles.postContent}>{item.startDate.toString().substring(0,10)} - {item.endDate.toString().substring(0, 10)}</Text>
             <Text style={styles.postAuthor}>Posted by: {item.username}</Text>
             </View>
         </TouchableOpacity>
@@ -102,7 +102,6 @@ export default function HomeScreen({ navigation }) {
             onChangeText={(text) => setSearch(text)}
             value={search}
         />
-
         <DatePicker
         style={{ marginBottom: 20, width: 200 }}
         date={searchStartDate}
@@ -129,6 +128,7 @@ export default function HomeScreen({ navigation }) {
         }}
         onDateChange={(startDate) => setStartDate(startDate)}
         />
+        
 
         <DatePicker
         style={{ marginBottom: 20, width: 200 }}
@@ -156,7 +156,8 @@ export default function HomeScreen({ navigation }) {
         }}
         onDateChange={(endDate) => setEndDate(endDate)}
       />
-        <TouchableOpacity
+      
+      <TouchableOpacity
             style={styles.filterButton}
             onPress={() => fetchFilteredPosts()}
         >
@@ -164,7 +165,6 @@ export default function HomeScreen({ navigation }) {
             {searchDatePosts ? 'Back to all posts' : 'Search by date'}
             </Text>
         </TouchableOpacity>
-
         <TouchableOpacity
             style={styles.filterButton}
             onPress={() => setCurrentUserPosts(!currentUserPosts)}
@@ -175,7 +175,7 @@ export default function HomeScreen({ navigation }) {
         </TouchableOpacity>
         <ScrollView
             refreshControl={
-                <RefreshControl refreshing={refreshing} onRefresh={handleRefresh} />
+                <RefreshControl refreshing={refreshing} onRefresh={handleRefresh}  />
             }
         >
         <FlatList inverted
@@ -201,7 +201,7 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: 'bold',
     marginBottom: 20,
-    color: '#0F4D92',
+    color: '#00356B',
     fontFamily: 'Avenir',
   },
   searchInput: {
@@ -213,7 +213,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   filterButton: {
-    backgroundColor: '#0F4D92',
+    backgroundColor: '#00356B',
     padding: 10,
     borderRadius: 5,
     marginBottom: 10,
@@ -232,7 +232,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     marginBottom: 10,
     borderWidth: 1,
-    borderColor: '#0F4D92',
+    borderColor: '#00356B',
     flexDirection: 'row',
     justifyContent: 'space-between', // add this to align rent to right
     alignItems: 'center', // add this to center vertically
@@ -251,7 +251,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: 'bold',
     marginBottom: 10,
-    color: '#0F4D92',
+    color: '#00356B',
     fontFamily: 'Avenir',
   },
   postContent: {
@@ -260,7 +260,7 @@ const styles = StyleSheet.create({
     fontFamily: 'Avenir',
   },
   rentContainer: {
-    backgroundColor: '#0F4D92',
+    backgroundColor: '#00356B',
     borderRadius: 5,
     padding: 5,
     marginRight: 10,
