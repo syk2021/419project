@@ -155,6 +155,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginBottom: 20,
     color: '#00356b',
+    fontFamily: 'Avenir',
   },
   input: {
     height: 40,
@@ -163,6 +164,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     paddingHorizontal: 10,
     borderRadius: 5,
+    fontFamily: 'Avenir',
   },
   buttonContainer: {
     flexDirection: 'row',
@@ -181,10 +183,12 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontWeight: 'bold',
     fontSize: 16,
+    fontFamily: 'Avenir',
   },
   error: {
     color: 'red',
     marginTop: 10,
+    fontFamily: 'Avenir',
   },
   optionButton: {
     flex: 1,
@@ -202,10 +206,12 @@ const styles = StyleSheet.create({
   optionButtonText: {
     color: '#fff',
     fontWeight: 'bold',
+    fontFamily: 'Avenir',
   },
   selectedOptionButtonText: {
     color: '#fff',
     fontWeight: 'bold',
+    fontFamily: 'Avenir',
   },
   
 });

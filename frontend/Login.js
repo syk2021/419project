@@ -99,6 +99,7 @@ const LoginRegistration = ({navigation}) => {
       fontWeight: 'bold',
       marginVertical: 20,
       color: '#00356b',
+      fontFamily: 'Avenir',
     },
     input: {
       height: 40,
@@ -107,6 +108,7 @@ const LoginRegistration = ({navigation}) => {
       paddingHorizontal: 10,
       borderRadius: 5,
       backgroundColor: '#f2f2f2',
+      fontFamily: 'Avenir',
     },
     button: {
       backgroundColor: '#00356b',
@@ -121,10 +123,12 @@ const LoginRegistration = ({navigation}) => {
       color: '#ffffff',
       fontSize: 16,
       fontWeight: 'bold',
+      fontFamily: 'Avenir',
     },
     error: {
       color: 'red',
       marginBottom: 10,
+      fontFamily: 'Avenir',
     },
   });
   
