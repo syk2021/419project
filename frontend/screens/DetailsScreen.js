@@ -79,7 +79,7 @@ const DetailsScreen = ({ route }) => {
       <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backButton} >
         <Text style={styles.backButtonText}>Back to Home</Text>
       </TouchableOpacity>
-      
+      <ScrollView>
       <View style={styles.contentContainer}>
       <Text style={styles.rent}>Rent: {post.rentRange}/month</Text>
         <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
@@ -135,6 +135,7 @@ const DetailsScreen = ({ route }) => {
 
         
       </View>
+      </ScrollView>
     </View>
   );
 };
