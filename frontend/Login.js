@@ -44,6 +44,9 @@ const LoginRegistration = ({navigation}) => {
       if (error.response.status == 500) {
         setLoginErrorMessage("Username or password does not match.");
       }
+      if (error.response.status == 501) {
+        setLoginErrorMessage("Unable to find user.");
+      }
     })
     
   }

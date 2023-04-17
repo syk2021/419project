@@ -51,7 +51,11 @@ router.post('/register', async (req, res) => {
 // await axios.post("http://localhost:4000/api/login")
 router.post('/login', async (req, res) => {
     console.log("login gets here");
-
+    const check_username_exists = await UserModel.findOne({ username: req.body.username }).exec();
+    if (!check_username_exists) {
+        return res.status(501).json(check_username_exists);
+    }
+    
     // find the user with the entered username and password
     const found_user = await UserModel.findOne({ username: req.body.username, password: req.body.password}).exec();
     console.log(found_user);
@@ -164,7 +168,7 @@ router.post('/deletecomment', async (req, res) => {
 
 // delete account
 router.post('/deleteaccount', async (req, res) => {
-    const result = await UserModel.findByIdAndDelete(req.body._id).exec();
+    const result = await UserModel.findOneAndDelete({username: req.body.username}).exec();
     return res.status(200).json(result);
 })
 

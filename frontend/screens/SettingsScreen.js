@@ -36,10 +36,14 @@ export default function SettingsScreen({ navigation }) {
 
   const handleDelete = (user) => {
     // delete user's account
-    axios.post('http://localhost:4000/api/deleteaccount', user)
+    params = {
+      username: user,
+    }
+    console.log(user);
+    axios.post('http://localhost:4000/api/deleteaccount', params)
     .then((response) => {
         console.log("succeeded");
-        setUser('')
+        setUser('');
         navigation.navigate('Login');
     })
     .catch((error) => {

@@ -4,7 +4,7 @@ const Schema = mongoose.Schema
 // email validation
 var validateEmail = function(email) {
     // regular expression for email validation
-    var re = /^w+([\.-]?\w+)*@yale.edu/;
+    var re = /^[a-z0-9]+[.]?[a-z0-9]+@yale\.edu$/;
     return re.test(email)
 }
 
