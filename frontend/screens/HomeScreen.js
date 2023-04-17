@@ -128,9 +128,6 @@ export default function HomeScreen({ navigation }) {
           </View>
         </View>
 
-
-
-
         <TextInput
             placeholder="Search by title/ location"
             style={styles.searchInput}
@@ -221,8 +218,8 @@ export default function HomeScreen({ navigation }) {
 const styles = StyleSheet.create({
 
   header: {
-    paddingVertical: 10,
-    paddingHorizontal: 20,
+    paddingVertical: 30,
+    paddingHorizontal: 0,
     borderBottomWidth: 1,
     borderBottomColor: '#ccc',
   },
