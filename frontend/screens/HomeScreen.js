@@ -155,7 +155,8 @@ export default function HomeScreen({ navigation }) {
           },
           placeholderText: {
             fontSize: 16,
-            color: '#c5c5c5'
+            color: '#c5c5c5',
+            fontFamily: 'Avenir',
           }
         }}
         onDateChange={(startDate) => setStartDate(startDate)}
@@ -183,7 +184,8 @@ export default function HomeScreen({ navigation }) {
           },
           placeholderText: {
             fontSize: 16,
-            color: '#c5c5c5'
+            color: '#c5c5c5',
+            fontFamily: 'Avenir',
           }
         }}
         onDateChange={(endDate) => setEndDate(endDate)}
@@ -235,6 +237,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginBottom: 20,
     color: '#00356B',
+    fontFamily: 'Avenir',
 
   },
   searchInput: {
@@ -244,6 +247,7 @@ const styles = StyleSheet.create({
     borderColor: '#0F4D92',
     paddingHorizontal: 10,
     marginBottom: 15,
+    fontFamily: 'Avenir',
   },
   postFilter: {
     backgroundColor: '#00356B',
@@ -251,6 +255,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     paddingVertical: 5,
     marginLeft: 10,
+    fontFamily: 'Avenir',
   
   },
   myButton:{
@@ -258,7 +263,8 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontWeight: 'bold',
     fontSize: 15,
-    textAlign: 'right'
+    textAlign: 'right',
+    fontFamily: 'Avenir',
   },
   filterButton: {
     backgroundColor: '#00356B',
@@ -270,13 +276,15 @@ const styles = StyleSheet.create({
     color: '#fff',
     textAlign: 'center',
     fontWeight: 'bold',
-    fontSize: 15
+    fontSize: 15,
+    fontFamily: 'Avenir',
   },
   list: {
     flex: 1,
   },
   post: {
     backgroundColor: '#FFFFFF',
+    fontFamily: 'Avenir',
     padding: 20,
     borderRadius: 5,
     marginBottom: 10,
@@ -320,6 +328,9 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontFamily: 'Avenir',
   },
+  postAuthor: {
+    fontFamily: 'Avenir',
+  }
 
 });
 

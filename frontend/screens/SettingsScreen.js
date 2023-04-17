@@ -103,6 +103,7 @@ export default function SettingsScreen({ navigation }) {
       fontSize: 36,
       fontWeight: 'bold',
       color: '#00356B',
+      fontFamily: 'Avenir',
     },
     row: {
       flexDirection: 'row',
@@ -116,10 +117,12 @@ export default function SettingsScreen({ navigation }) {
     label: {
       fontSize: 18,
       color: '#999',
+      fontFamily: 'Avenir',
     },
     value: {
       fontSize: 16,
       color: '#000',
+      fontFamily: 'Avenir',
 
     },
     logoutButton: {
@@ -133,6 +136,7 @@ export default function SettingsScreen({ navigation }) {
       fontSize: 20,
       fontWeight: 'bold',
       textAlign: 'center',
+      fontFamily: 'Avenir',
     },
     deleteButton: {
       backgroundColor: '#993d36',
@@ -145,6 +149,7 @@ export default function SettingsScreen({ navigation }) {
       fontSize: 20,
       fontWeight: 'bold',
       textAlign: 'center',
+      fontFamily: 'Avenir',
     },
   });
   
