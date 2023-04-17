@@ -4,7 +4,7 @@ const Schema = mongoose.Schema
 // email validation
 var validateEmail = function(email) {
     // regular expression for email validation
-    var re = /^w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    var re = /^w+([\.-]?\w+)*@yale.edu/;
     return re.test(email)
 }
 
@@ -33,8 +33,6 @@ var UserSchema = new Schema({
         type: String
     },
 })
-
-// User.plugin(passportLocalMongoose);
 
 // this will make modelName: 'User'
 var UserModel = mongoose.model('User', UserSchema);

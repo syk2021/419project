@@ -91,6 +91,7 @@ export default function HomeScreen({ navigation }) {
         .catch((error) => {
           console.log(error);
         })
+        setSearchDatePosts(false);
       }
     }
   
