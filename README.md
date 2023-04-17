@@ -6,7 +6,7 @@
 ## Commands to run in terminal
 - run backend server => node index.js (make sure to be in backend directory)
 - npx react-native start => will print out errors in the frontend side (in frontend directory)
-- npx react-native run-ios => runs the react-native app itself (in frontend directory)
+- npx react-native run-ios => runs the react-native app itself (in frontend directory) => alternatively, you can also just press `i` after running second command
 
 # Adding a package
 Like Python's pip, node has a package manager called `npm`. 
