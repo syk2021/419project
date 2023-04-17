@@ -1,6 +1,13 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
+// email validation
+var validateEmail = function(email) {
+    // regular expression for email validation
+    var re = /^w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    return re.test(email)
+}
+
 var UserSchema = new Schema({
     username: {
         type: String
@@ -16,7 +23,10 @@ var UserSchema = new Schema({
     },
     // emailAddress
     emailAddress: {
-        type: String
+        type: String,
+        lowercase: true,
+        unique: true,
+        validate: [validateEmail, 'Please fill a valid email address'],
     },
     // undergrad + grad
     affiliation: {
