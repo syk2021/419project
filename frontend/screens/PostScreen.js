@@ -3,6 +3,8 @@ import { View, Text, TextInput, TouchableOpacity } from 'react-native';
 import axios from 'axios';
 import { UserContext } from '../UserProvider.js';
 import DatePicker from 'react-native-datepicker';
+import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
+import ImagePicker from 'react-native-image-picker';
 
 export default function PostScreen({ navigation }) {
   const [title, setTitle] = useState('');
@@ -11,6 +13,7 @@ export default function PostScreen({ navigation }) {
   const [date, setDate] = useState('');
   const [endDate, setEndDate] = useState('');
   const { user } = useContext(UserContext);
+  const [selectedImage, setSelectedImage] = useState(null);
 
 const reset = () => {
   setTitle('');
@@ -46,7 +49,9 @@ const reset = () => {
       console.log(error);
     })
   }
+ const handleChoosePhoto = () => {
 
+ }
   return (
     <View style={{ flex: 1, paddingHorizontal: 20, paddingVertical: 130, backgroundColor: '#f0f0f0', borderWidth: 2, borderColor: '#ddd', borderRadius: 10 }}>
       <Text style={{ fontSize: 36, fontWeight: 'bold', marginBottom: 20, color: '#00356B' }}>
@@ -126,7 +131,20 @@ const reset = () => {
         }}
         onDateChange={(endDate) => setEndDate(endDate)}
       />
-  
+
+      {selectedImage ? (
+        <>
+          <Image source={{ uri: selectedImage.uri }} style={{ width: 200, height: 200, marginBottom: 20 }} />
+          <Text style={{ fontSize: 16, marginBottom: 20 }}>
+            {selectedImage.fileName}
+          </Text>
+        </>
+      ) : (
+        <TouchableOpacity onPress={handleChoosePhoto} style={{ marginBottom: 20, backgroundColor: '#f0f0f0', paddingVertical: 10, paddingHorizontal: 20, borderRadius: 5, alignItems: 'center', borderWidth: 1, borderColor: '#c5c5c5' }}>
+          <Text style={{ color: '#00356B', fontSize: 18, fontWeight: 'bold' }}>Select Photo</Text>
+        </TouchableOpacity>
+      )}
+ 
       <TouchableOpacity onPress={handlePost} style={{ backgroundColor: '#00356B', paddingVertical: 10, paddingHorizontal: 20, borderRadius: 5, alignItems: 'center' }}>
         <Text style={{ color: 'white', fontSize: 18, fontWeight: 'bold' }}>Post</Text>
       </TouchableOpacity>
