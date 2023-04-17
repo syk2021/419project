@@ -101,7 +101,7 @@ export default function HomeScreen({ navigation }) {
 
     return (
         <View style={styles.container}>
-          <View style={styles.header}>
+          {/* <View style={styles.header}>
             <View style={{ flexDirection: 'row' }}>
               <Text style={styles.title}>Posts</Text>
               <TouchableOpacity
@@ -113,7 +113,22 @@ export default function HomeScreen({ navigation }) {
                 </Text>
               </TouchableOpacity>
             </View>
+          </View> */}
+        <View style={styles.header}>
+          <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+            <Text style={styles.title}>Posts</Text>
+            <TouchableOpacity
+                style={[styles.postFilter, { alignSelf: 'flex-end' }]}
+                onPress={() => setCurrentUserPosts(!currentUserPosts)}
+              >
+                <Text style={styles.myButton}>
+                  {currentUserPosts ? 'Show all posts' : 'Show my posts'}
+                </Text>
+              </TouchableOpacity>
           </View>
+        </View>
+
+
 
 
         <TextInput
@@ -204,23 +219,22 @@ export default function HomeScreen({ navigation }) {
 }
 
 const styles = StyleSheet.create({
-  header: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    paddingHorizontal: 16,
-    paddingVertical: 8,
 
+  header: {
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderBottomWidth: 1,
+    borderBottomColor: '#ccc',
   },
   container: {
     flex: 1,
     paddingHorizontal: 20,
-    paddingVertical: 20,
+    paddingVertical: 40,
     backgroundColor: '#f0f0f0',
     justifyContent: 'flex-start',
   },
   title: {
-    fontSize: 30,
+    fontSize: 36,
     fontWeight: 'bold',
     marginBottom: 20,
     color: '#00356B',

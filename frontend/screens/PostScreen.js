@@ -48,8 +48,8 @@ const reset = () => {
   }
 
   return (
-    <View style={{ flex: 1, paddingHorizontal: 20, paddingVertical: 40, backgroundColor: '#f0f0f0', borderWidth: 2, borderColor: '#ddd', borderRadius: 10 }}>
-      <Text style={{ fontSize: 30, fontWeight: 'bold', marginBottom: 20, color: '#00356B' }}>
+    <View style={{ flex: 1, paddingHorizontal: 20, paddingVertical: 130, backgroundColor: '#f0f0f0', borderWidth: 2, borderColor: '#ddd', borderRadius: 10 }}>
+      <Text style={{ fontSize: 36, fontWeight: 'bold', marginBottom: 20, color: '#00356B' }}>
         Create a New Post
       </Text>
   

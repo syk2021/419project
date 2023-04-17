@@ -93,7 +93,8 @@ export default function SettingsScreen({ navigation }) {
       flex: 1,
       backgroundColor: '#F5F5F5',
       paddingHorizontal: 30,
-      paddingTop: 50,
+      // paddingTop: 50,
+      paddingVertical: 130,
     },
     header: {
       marginBottom: 50,
