@@ -79,10 +79,12 @@ const DetailsScreen = ({ route }) => {
       <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backButton} >
         <Text style={styles.backButtonText}>Back to Home</Text>
       </TouchableOpacity>
+      
       <View style={styles.contentContainer}>
+      <Text style={styles.rent}>Rent: {post.rentRange}/month</Text>
         <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
           <Text style={styles.title}>{post.title}</Text>
-          <Text style={styles.rent}>Rent: {post.rentRange}/month</Text>
+          
         </View>
         <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
           <Text style={styles.author}>By {post.username}</Text>
@@ -94,7 +96,7 @@ const DetailsScreen = ({ route }) => {
         {/* {post.username == user && <Button title="Delete" onPress={() => deletePost(post)}>Delete</Button>} */}
         {post.username == user && (
           <TouchableOpacity style={[styles.commentButton, { alignSelf: 'center'}]} onPress={() => deletePost(post)}>
-            <Text style={styles.commentButtonText}>Delete</Text>
+            <Text style={styles.deleteButtonText}>Delete</Text>
           </TouchableOpacity>
         )}
 
@@ -124,7 +126,7 @@ const DetailsScreen = ({ route }) => {
             {/* {comment.username == user && <Button title="Delete" onPress={() => deleteComment(comment)}>Delete</Button>} */}
             {comment.username == user && (
               <TouchableOpacity style={[styles.commentButton, { alignSelf: 'center'}]} onPress={() => deleteComment(comment)}>
-                <Text style={styles.commentButtonText}>Delete</Text>
+                <Text style={styles.deleteButtonText}>Delete</Text>
               </TouchableOpacity>
             )}
           </View>
@@ -149,17 +151,19 @@ const styles = StyleSheet.create({
     top: 50,
     left: 10,
     zIndex: 1,
-    backgroundColor: '#0c2340',
+    backgroundColor: '#00356B',
     paddingVertical: 10,
     paddingHorizontal: 20,
     borderRadius: 5,
     borderWidth: 1,
-    borderColor: '#0c2340',
+    borderColor: '#00356B',
+    fontFamily: 'Avenir',
   },
   backButtonText: {
     fontSize: 16,
     fontWeight: 'bold',
     color: '#ffffff',
+    fontFamily: 'Avenir',
   },
   contentContainer: {
     backgroundColor: '#ffffff',
@@ -171,31 +175,36 @@ const styles = StyleSheet.create({
     borderColor: '#c5c5c5',
   },
   title: {
-    fontSize: 32,
+    fontSize: 23,
     fontWeight: 'bold',
-    color: '#0c2340',
-    marginBottom: 10,
+    color: '#00356B',
+    marginBottom: 3,
+    fontFamily: 'Avenir',
   },
   author: {
-    fontSize: 16,
-    color: '#0c2340',
-    marginBottom: 20,
+    fontSize: 15,
+    color: '#00356B',
+    marginBottom: 10,
+    fontFamily: 'Avenir',
   },
   date: {
-    fontSize: 14,
+    fontSize: 15,
     color: 'gray',
     textAlign: 'right',
+    fontFamily: 'Avenir',
     // alignSelf: 'center',
   },
   content: {
-    fontSize: 18,
-    color: '#0c2340',
+    fontSize: 20,
+    color: '#00356B',
     marginBottom: 20,
+    fontFamily: 'Avenir',
   },
   rent: {
-    fontSize: 20,
-    color: '#0c2340',
+    fontSize: 17,
+    color: '#00356B',
     textAlign: 'right',
+    fontFamily: 'Avenir',
   },
   commentContainer: {
     backgroundColor: '#ffffff',
@@ -209,13 +218,15 @@ const styles = StyleSheet.create({
   commentAuthor: {
     fontSize: 16,
     fontWeight: 'bold',
-    color: '#0c2340',
+    color: '#00356B',
     marginBottom: 10,
+    fontFamily: 'Avenir',
   },
   commentText: {
     fontSize: 18,
-    color: '#0c2340',
+    color: '#00356B',
     marginBottom: 20,
+    fontFamily: 'Avenir',
   },
   commentInputContainer: {
     flexDirection: 'row',
@@ -230,19 +241,37 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     paddingHorizontal: 10,
     marginRight: 10,
+    fontFamily: 'Avenir',
   },
   commentButton: {
-    backgroundColor: '#0c2340',
+    backgroundColor: '#00356B',
     paddingVertical: 10,
     paddingHorizontal: 20,
     borderRadius: 5,
     borderWidth: 1,
-    borderColor: '#0c2340',
+    borderColor: '#00356B',
+    fontFamily: 'Avenir',
   },
   commentButtonText: {
     fontSize: 16,
     fontWeight: 'bold',
     color: '#ffffff',
+    fontFamily: 'Avenir',
+  },
+  deleteButton: {
+    backgroundColor: '#00356B',
+    paddingVertical: 7,
+    paddingHorizontal: 14,
+    borderRadius: 5,
+    borderWidth: 1,
+    borderColor: '#00356B',
+    fontFamily: 'Avenir',
+  },
+  deleteButtonText: {
+    fontSize: 15,
+    fontWeight: 'bold',
+    color: '#ffffff',
+    fontFamily: 'Avenir',
   },
 });
 
