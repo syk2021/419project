@@ -3,8 +3,7 @@ import { View, Text, TextInput, TouchableOpacity } from 'react-native';
 import axios from 'axios';
 import { UserContext } from '../UserProvider.js';
 import DatePicker from 'react-native-datepicker';
-import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
-import ImagePicker from 'react-native-image-picker';
+import {launchImageLibrary} from 'react-native-image-picker';
 
 export default function PostScreen({ navigation }) {
   const [title, setTitle] = useState('');
@@ -50,7 +49,14 @@ const reset = () => {
     })
   }
  const handleChoosePhoto = () => {
-
+  launchImageLibrary({ 
+        mediaType: 'photo', 
+        includeBase64: false, 
+        maxHeight: 200, 
+        maxWidth: 200},
+        (response) => {
+          console.log(response);
+        });
  }
   return (
     <View style={{ flex: 1, paddingHorizontal: 20, paddingVertical: 130, backgroundColor: '#f0f0f0', borderWidth: 2, borderColor: '#ddd', borderRadius: 10 }}>
