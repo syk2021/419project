@@ -11,7 +11,6 @@ import SettingsScreen from './screens/SettingsScreen';
 
 //Screen names
 const homeName = "Home";
-const detailsName = "Details";
 const postName = "Post";
 const settingsName = "Settings";
 
