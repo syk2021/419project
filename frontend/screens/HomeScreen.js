@@ -200,19 +200,14 @@ export default function HomeScreen({ navigation }) {
             </Text>
         </TouchableOpacity>
 
-        <ScrollView
-            refreshControl={
-                <RefreshControl refreshing={refreshing} onRefresh={handleRefresh}  />
-            }
-        >
         <FlatList inverted
             nestedScrollEnabled
+            refreshControl={<RefreshControl refreshing={refreshing} onRefresh={handleRefresh}/>}
             data={filteredPosts}
             renderItem={renderPost}
             keyExtractor={(item) => item._id.toString()}
             style={styles.list}
         />
-        </ScrollView>
         </View>
     );
 }
