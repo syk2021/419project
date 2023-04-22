@@ -140,7 +140,7 @@ const reset = () => {
         onDateChange={(endDate) => setEndDate(endDate)}
       />
 
-      {selectedImage ? (
+      {/* {selectedImage ? (
         <>
           <Image source={{ uri: selectedImage.uri }} style={{ width: 200, height: 200, marginBottom: 20 }} />
           <Text style={{ fontFamily: 'Avenir', fontSize: 16, marginBottom: 20 }}>
@@ -151,7 +151,7 @@ const reset = () => {
         <TouchableOpacity onPress={handleChoosePhoto} style={{ marginBottom: 20, backgroundColor: '#f0f0f0', paddingVertical: 10, paddingHorizontal: 20, borderRadius: 5, alignItems: 'center', borderWidth: 1, borderColor: '#c5c5c5' }}>
           <Text style={{ fontFamily: 'Avenir', color: '#00356B', fontSize: 18, fontWeight: 'bold' }}>Select Photo</Text>
         </TouchableOpacity>
-      )}
+      )} */}
  
       <TouchableOpacity onPress={handlePost} style={{ backgroundColor: '#00356B', paddingVertical: 10, paddingHorizontal: 20, borderRadius: 5, alignItems: 'center' }}>
         <Text style={{ fontFamily: 'Avenir', color: 'white', fontSize: 18, fontWeight: 'bold' }}>Post</Text>
