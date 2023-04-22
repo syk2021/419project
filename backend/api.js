@@ -136,6 +136,29 @@ router.post('/filteredposts', async (req, res) => {
     return res.status(200).json(posts);
 })
 
+// fetch only rent
+router.post('/filteredposts_rent', async (req, res) => {
+    const posts = await PostModel.find({
+        rentRange: {
+            $lte: req.body.searchRentRange
+        }
+    }).sort({ rentRange: -1}).exec();
+    return res.status(200).json(posts);
+})
+
+// fetch only dates
+router.post('/filteredposts_date', async (req, res) => {
+    const posts = await PostModel.find({
+        startDate: {
+            $lte: req.body.searchStartDate
+        },
+        endDate: {
+            $gte: req.body.searchEndDate
+        },
+   }).exec();
+   return res.status(200).json(posts);
+})
+
 
 // post comments
 // await axios.post('https://localhost:4000/api/postcomment')
