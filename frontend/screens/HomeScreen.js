@@ -174,6 +174,7 @@ export default function HomeScreen({ navigation }) {
             value={search}
         />
         <DatePicker
+        useNativeDriver={false}
         style={{ marginBottom: 10, width: 200 }}
         date={searchStartDate}
         mode="date"
@@ -203,6 +204,7 @@ export default function HomeScreen({ navigation }) {
         
 
         <DatePicker
+        useNativeDriver={false}
         style={{ marginBottom: 15, width: 200 }}
         date={searchEndDate}
         mode="date"
