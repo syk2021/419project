@@ -115,7 +115,7 @@ router.post('/newpost', async (req, res) => {
 router.post('/allposts', async (req, res) => {
     console.log("fetch all posts");
     // fetch all the posts
-    const posts = await PostModel.find({}).sort({ rentRange: -1}).exec();
+    const posts = await PostModel.find({}).sort({ rentRange: 1}).exec();
     return res.status(200).json(posts);
 })
 
@@ -132,7 +132,7 @@ router.post('/filteredposts', async (req, res) => {
         rentRange: {
             $lte: req.body.searchRentRange
         }
-    }).sort({ rentRange: -1}).exec();
+    }).sort({ rentRange: 1}).exec();
     return res.status(200).json(posts);
 })
 
@@ -142,7 +142,7 @@ router.post('/filteredposts_rent', async (req, res) => {
         rentRange: {
             $lte: req.body.searchRentRange
         }
-    }).sort({ rentRange: -1}).exec();
+    }).sort({ rentRange: 1}).exec();
     return res.status(200).json(posts);
 })
 
