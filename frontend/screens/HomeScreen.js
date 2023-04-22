@@ -208,7 +208,7 @@ export default function HomeScreen({ navigation }) {
             onPress={() => fetchFilteredPosts()}
         >
             <Text style={styles.filterButtonText}>
-            {searchDatePosts ? 'Back to all posts' : 'Search by date/rent'}
+            {searchDatePosts ? 'Back to all posts' : 'Search'}
             </Text>
         </TouchableOpacity>
 
