@@ -15,6 +15,7 @@ export default function HomeScreen({ navigation }) {
     const [searchDatePosts, setSearchDatePosts] = useState(false);
     const [searchStartDate, setStartDate] = useState('');
     const [searchEndDate, setEndDate] = useState('');
+    const [searchRentRange, setRentRange] = useState('');
 
     // only call function at first render
     useEffect(() => {
@@ -67,10 +68,14 @@ export default function HomeScreen({ navigation }) {
 
     // fetch filtered posts
     const fetchFilteredPosts = () => {
+      if (searchRentRange == '') {
+        searchRentRange = Infinity
+      }
       if (!searchDatePosts) {
         params = {
           searchStartDate: searchStartDate,
           searchEndDate: searchEndDate,
+          searchRentRange: searchRentRange,
         }
         axios.post('http://localhost:4000/api/filteredposts', params)
         .then((response) => {
@@ -191,12 +196,19 @@ export default function HomeScreen({ navigation }) {
         onDateChange={(endDate) => setEndDate(endDate)}
       />
       
+      <TextInput
+            placeholder="Search by rent"
+            style={styles.searchInput}
+            onChangeText={(text) => setRentRange(text)}
+            value={searchRentRange}
+      />
+      
       <TouchableOpacity
             style={styles.filterButton}
             onPress={() => fetchFilteredPosts()}
         >
             <Text style={styles.filterButtonText}>
-            {searchDatePosts ? 'Back to all posts' : 'Search by date'}
+            {searchDatePosts ? 'Back to all posts' : 'Search by date/rent'}
             </Text>
         </TouchableOpacity>
 

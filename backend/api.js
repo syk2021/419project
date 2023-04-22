@@ -128,10 +128,14 @@ router.post('/filteredposts', async (req, res) => {
         },
         endDate: {
             $gte: req.body.searchEndDate
+        },
+        rentRange: {
+            $lte: req.body.searchRentRange
         }
-    }).exec();
+    }).sort({ rentRange: -1}).exec();
     return res.status(200).json(posts);
 })
+
 
 // post comments
 // await axios.post('https://localhost:4000/api/postcomment')
@@ -171,5 +175,6 @@ router.post('/deleteaccount', async (req, res) => {
     const result = await UserModel.findOneAndDelete({username: req.body.username}).exec();
     return res.status(200).json(result);
 })
+
 
 module.exports = router;
