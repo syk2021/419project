@@ -246,6 +246,7 @@ export default function HomeScreen({ navigation }) {
         </TouchableOpacity>
 
         <FlatList inverted
+            useNativeDriver={false}
             nestedScrollEnabled
             refreshControl={<RefreshControl refreshing={refreshing} onRefresh={handleRefresh}/>}
             data={filteredPosts}
