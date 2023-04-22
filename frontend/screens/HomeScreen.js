@@ -72,21 +72,57 @@ export default function HomeScreen({ navigation }) {
         searchRentRange = Infinity
       }
       if (!searchDatePosts) {
-        params = {
-          searchStartDate: searchStartDate,
-          searchEndDate: searchEndDate,
-          searchRentRange: searchRentRange,
+        if (searchRentRange != '' && searchEndDate != '' && searchStartDate != ''){
+          params = {
+            searchStartDate: searchStartDate,
+            searchEndDate: searchEndDate,
+            searchRentRange: searchRentRange,
+          }
+          axios.post('http://localhost:4000/api/filteredposts', params)
+          .then((response) => {
+            console.log("filtered post success");
+            setPosts(response.data);
+          })
+          .catch((error) => {
+            console.log(error);
+          })
+          // we searched by dates, so set this to true
+          setSearchDatePosts(true);
         }
-        axios.post('http://localhost:4000/api/filteredposts', params)
-        .then((response) => {
-          console.log("filtered post success");
-          setPosts(response.data);
-        })
-        .catch((error) => {
-          console.log(error);
-        })
-        // we searched by dates, so set this to true
-        setSearchDatePosts(true);
+        else if(searchRentRange == ''){
+          params = {
+            searchStartDate: searchStartDate,
+            searchEndDate: searchEndDate,
+   
+          }
+          axios.post('http://localhost:4000/api/filteredposts_date', params)
+          .then((response) => {
+            console.log("filtered post success");
+            setPosts(response.data);
+          })
+          .catch((error) => {
+            console.log(error);
+          })
+          // we searched by dates, so set this to true
+          setSearchDatePosts(true);
+        }
+        else if(searchStartDate == '' && searchEndDate == ''){
+          params = {
+            searchRentRange: searchRentRange,
+   
+          }
+          axios.post('http://localhost:4000/api/filteredposts_rent', params)
+          .then((response) => {
+            console.log("filtered post success");
+            setPosts(response.data);
+          })
+          .catch((error) => {
+            console.log(error);
+          })
+          // we searched by dates, so set this to true
+          setSearchDatePosts(true);
+        }
+
       }
       else {
         axios.post('http://localhost:4000/api/allposts')
