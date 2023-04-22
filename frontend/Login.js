@@ -17,6 +17,8 @@ const LoginRegistration = ({navigation}) => {
   }
   
   doUserLogin = async function (username, password) {
+    setLoginErrorMessage("");
+    
     params = {
       username: username,
       password: password

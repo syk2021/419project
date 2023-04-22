@@ -68,6 +68,7 @@ export default function HomeScreen({ navigation }) {
 
     // fetch filtered posts
     const fetchFilteredPosts = () => {
+      
       if (!searchDatePosts) {
         if (searchRentRange != '' && searchEndDate != '' && searchStartDate != ''){
           params = {
@@ -246,7 +247,6 @@ export default function HomeScreen({ navigation }) {
         </TouchableOpacity>
 
         <FlatList inverted
-            useNativeDriver={false}
             nestedScrollEnabled
             refreshControl={<RefreshControl refreshing={refreshing} onRefresh={handleRefresh}/>}
             data={filteredPosts}
@@ -374,5 +374,3 @@ const styles = StyleSheet.create({
   }
 
 });
-
-
