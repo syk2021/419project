@@ -68,9 +68,6 @@ export default function HomeScreen({ navigation }) {
 
     // fetch filtered posts
     const fetchFilteredPosts = () => {
-      if (searchRentRange == '') {
-        searchRentRange = Infinity
-      }
       if (!searchDatePosts) {
         if (searchRentRange != '' && searchEndDate != '' && searchStartDate != ''){
           params = {
